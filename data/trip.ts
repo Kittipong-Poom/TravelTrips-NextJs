@@ -1,0 +1,62 @@
+export const AnniversaryTrip = [
+  {
+    id: 1,
+    name: "Mae Tia Waterfall",
+    image: "/images/aniversarytrip/maetia2.jpg",
+    location: "Chiang Mai Jomthong",
+    date: "20-23 January 2023",
+    housing: "Booked",
+    transport: "Booked",
+    activities: "Find Activity",
+  },
+  {
+    id: 2,
+    name: "Doi Chang",
+    name_th: "ดอยช้าง",
+    image: "/images/aniversarytrip/doichang.jpg",
+    location: "Mae Suay Chiang Rai",
+    date: "14-15 October 2024",
+    housing: "Booked",
+    transport: "Booked",
+    description:
+      "ดอยช้างเป็นที่รู้จักในฐานะแหล่งปลูกกาแฟชั้นเลิศระดับโลก ด้วยอากาศที่เย็นสบายตลอดปี วิวทิวทัศน์งดงาม และกลิ่นอายของความสงบที่แทรกซึมอยู่ทุกมุม ทำให้ดอยช้างกลายเป็นจุดหมายปลายทางยอดนิยมสำหรับคนที่อยากหนีความวุ่นวายจากเมืองใหญ่ ",
+  },
+  {
+    id: 3,
+    name: "Chiang Dao",
+    name_th: "ดอยหลวงเชียงดาว",
+    image: "/images/aniversarytrip/banleesoo.jpg",
+    location: "Chaing Dao, Chiang Mai",
+    date: "24-25 December 2023",
+    housing: "Booked",
+    transport: "Booked",
+    description:
+      "แนะนำให้ไปช่วง เดือน ธันวาคม หรือหน้าฝนเพราะว่า จะมีหมอกและอากาศเย็นเหมาะกับการมานั่งพักผ่อนฮีลใจไม่มีสัญญานอินเตอร์เน็ต!",
+  },
+  {
+    id: 4,
+    name: "Mae Tang",
+    name_th: "แม่แตง",
+    image: "/images/aniversarytrip/maetang2.jpg",
+    location: "Kuet Chang, Mae Taeng, Chiang Mai",
+    date: "27-28 January 2025",
+    housing: "Booked",
+    transport: "Booked",
+    activities: "Find Activity",
+    description:
+      "แม่แตงเป็นอีกหนึ่งจุดหมายที่เหมาะสำหรับคนรักธรรมชาติ ด้วยบรรยากาศที่เงียบสงบ โอบล้อมด้วยภูเขาและป่าไม้สีเขียวขจี ไฮไลท์สำคัญที่นี่คือล่องแพไม้ไผ่บนลำน้ำแม่แตงสุดชิล นั่งฟังเสียงสายน้ำไหลผ่านโขดหิน",
+  },
+  {
+    id: 5,
+    name: "Pha hi",
+    name_th: "ดอยผาฮี้",
+    image: "/images/aniversarytrip/phahee.jpg",
+    location: "Pong Ngam Mae Sai",
+    date: "2 January 2024",
+    housing: "Booked",
+    transport: "Booked",
+    activities: "Find Activity",
+    description:
+      "ดอยผาฮี้เป็นหมู่บ้านเล็กๆ ที่ตั้งอยู่บนหน้าผาสูง ใกล้ชายแดนไทย-พม่า เป็นอีกหนึ่งสถานที่ที่ยังคงเอกลักษณ์ของวิถีชีวิตชนเผ่าอาข่าไว้อย่างเหนียวแน่น ความพิเศษของดอยผาฮี้คือวิวทะเลหมอกที่งดงามไม่แพ้ที่ไหนๆ และอากาศที่เย็นสบายตลอดปี ",
+  },
+];
