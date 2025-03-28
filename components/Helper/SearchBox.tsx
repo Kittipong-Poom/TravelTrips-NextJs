@@ -87,7 +87,7 @@ const SearchBox = () => {
 
   useEffect(() => {
     filterNationalParks();
-  }, [selectedProvince, searchQuery]);
+  }, [selectedProvince, searchQuery, filterNationalParks]);
 
   return (
     <div

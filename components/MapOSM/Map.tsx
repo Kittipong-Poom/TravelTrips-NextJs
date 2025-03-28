@@ -12,7 +12,7 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import L from "leaflet";
 import "leaflet-fullscreen";
 
-// Augment the module without using namespaces
+// eslint-disable-next-line @typescript-eslint/no-namespace
 declare module "leaflet" {
   interface Control {
     fullscreen: (options?: FullscreenOptions) => Control.Fullscreen;
