@@ -17,7 +17,6 @@ const SearchBox = () => {
   const [endDate, setEndDate] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenNationalPark, setIsOpenNationalPark] = useState<boolean>(false);
-  const [setSelectedItem] = useState<string | null>(null);
   const [filteredData, setFilteredData] = useState<string[]>([]);
   const [countAdult, setCountAdult] = useState<number>(1);
   const [countRoom, setCountRoom] = useState<number>(1);

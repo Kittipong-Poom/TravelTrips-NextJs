@@ -18,7 +18,7 @@ import {
 } from "swiper/modules";
 import { CiLocationOn, CiCircleCheck, CiCirclePlus } from "react-icons/ci";
 
-const page = () => {
+const Page = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   return (
     <div className="bg-white shadow-md rounded-lg grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2">
@@ -99,4 +99,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

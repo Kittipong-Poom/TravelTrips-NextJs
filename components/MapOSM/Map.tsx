@@ -11,15 +11,23 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import L from "leaflet";
 import "leaflet-fullscreen";
+
+// Augment the module without using namespaces
 declare module "leaflet" {
+  interface Control {
+    fullscreen: (options?: FullscreenOptions) => Control.Fullscreen;
+  }
+
   namespace control {
     function fullscreen(options?: FullscreenOptions): Control.Fullscreen;
   }
+
   namespace Control {
-    interface Fullscreen extends Control {
-      options: FullscreenOptions;
+    interface Fullscreen {
+      addTo(map: L.Map): this;
     }
   }
+
   interface FullscreenOptions {
     position?: L.ControlPosition;
     title?: string;
@@ -30,6 +38,7 @@ declare module "leaflet" {
     fullscreenElement?: boolean;
   }
 }
+
 const FullscreenButton = () => {
   const map = useMap();
   useEffect(() => {
@@ -46,6 +55,7 @@ const FullscreenButton = () => {
 
   return null;
 };
+
 const customIcon = new L.Icon({
   iconUrl: "/images/marker-red.png",
   iconSize: [42, 45],
@@ -66,6 +76,7 @@ const LocationMarker = ({
       setPosition([e.latlng.lat, e.latlng.lng]);
     },
   });
+
   return (
     <Marker
       position={position}

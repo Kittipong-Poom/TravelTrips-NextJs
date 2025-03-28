@@ -2,15 +2,11 @@
 import { FaMicrophone } from "react-icons/fa";
 import { useState } from "react";
 import { SpeechRecognitionEvent } from "@/types/SpeechRecognitionEvent";
-declare global {
-  interface Window {
-    SpeechRecognition: boolean;
-    webkitSpeechRecognition: any;
-  }
-}
+
 interface SpeechInputProps {
   setText: (text: string) => void;
 }
+
 const SpeechInput = ({ setText }: SpeechInputProps) => {
   const [isListening, setIsListening] = useState(false);
   const startListening = () => {
@@ -32,6 +28,7 @@ const SpeechInput = ({ setText }: SpeechInputProps) => {
       setIsListening(false);
     };
   };
+
   return (
     <div className="p-1">
       <FaMicrophone
