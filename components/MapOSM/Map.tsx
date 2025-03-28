@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 import { useEffect, useState } from "react";
 import {
   MapContainer,
@@ -13,20 +12,10 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import L from "leaflet";
 import "leaflet-fullscreen";
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
+// ขยาย module leaflet โดยไม่ใช้ namespace
 declare module "leaflet" {
   interface Control {
     fullscreen: (options?: FullscreenOptions) => Control.Fullscreen;
-  }
-
-  namespace control {
-    function fullscreen(options?: FullscreenOptions): Control.Fullscreen;
-  }
-
-  namespace Control {
-    interface Fullscreen {
-      addTo(map: L.Map): this;
-    }
   }
 
   interface FullscreenOptions {
