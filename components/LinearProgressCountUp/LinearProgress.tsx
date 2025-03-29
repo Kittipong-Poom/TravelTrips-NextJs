@@ -19,7 +19,7 @@ export default function LinearProgressCountUp() {
   return (
     <div className="w-[80%] h-[100vh] mx-auto flex items-center justify-center relative">
       <Image
-        src="/gif/anime.gif"
+        src="/gif/cat1.gif"
         width={300}
         height={300}
         alt="Picture of the author"

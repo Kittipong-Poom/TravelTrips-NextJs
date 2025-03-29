@@ -11,6 +11,8 @@ import buddhistEra from "dayjs/plugin/buddhistEra";
 import SpeechInput from "./SpeechInput";
 import { nationalParks } from "@/data/nationalPark";
 import { provinces } from "@/data/province";
+import { MdClear } from "react-icons/md";
+
 dayjs.extend(buddhistEra);
 const SearchBox = () => {
   const [selectedStartDate, setSelectedDate] = useState<string>("");
@@ -24,10 +26,10 @@ const SearchBox = () => {
   const [text, setText] = useState<string>("");
   const [filteredNationalParks, setFilteredNationalParks] =
     useState(nationalParks);
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
   const [selectedNationalPark, setSelectedNationalPark] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedText] = useDebounce(text, 500);
-  const [selectedProvince] = useState<string>("");
   const handleDateChange =
     (type: "start" | "end") => (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
@@ -55,10 +57,7 @@ const SearchBox = () => {
   const handleRoomRemove = () => updateCount(setCountRoom, -1);
   const handleChildChange = () => updateCount(setCountChild, 1);
   const handleChildRemove = () => updateCount(setCountChild, -1);
-  const handleSelectItem = (item: string) => {
-    setText(item);
-    setFilteredData([]);
-  };
+
   const filterProvinces = (debouncedText: string) => {
     if (debouncedText) {
       const filtered = provinces
@@ -71,31 +70,33 @@ const SearchBox = () => {
   };
   const filterNationalParks = () => {
     if (selectedProvince) {
-      const filteredParks = nationalParks.filter(
+      const filtered = nationalParks.filter(
         (park) =>
-          park.province === selectedProvince &&
+          park.province
+            .toLowerCase()
+            .includes(selectedProvince.toLowerCase()) &&
           park.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setFilteredNationalParks(filteredParks);
+      setFilteredNationalParks(filtered);
     } else {
       setFilteredNationalParks(nationalParks);
     }
   };
   useEffect(() => {
     filterProvinces(debouncedText);
+    setSelectedNationalPark("");
+    setFilteredNationalParks([]);
   }, [debouncedText]);
 
   useEffect(() => {
     filterNationalParks();
-  }, [selectedProvince, searchQuery, filterNationalParks]);
+  }, [searchQuery, selectedProvince]);
 
   return (
     <div
       className="bg-white rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 
     items-center justify-center gap-8 mt-4 sm:mt-12 w-[95%] sm:w-[80%]"
     >
-      {/* Search Input */}
-
       <div className="col-span-1 flex justify-center items-center space-x-6 relative">
         <div className="border-2 w-full border-gray-400 rounded-lg flex items-center p-2 shadow-lg">
           <GoSearch className="w-6 h-6 text-gray-900" />
@@ -106,7 +107,20 @@ const SearchBox = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <SpeechInput setText={setText} />
+          <div className="flex items-center">
+            {text && (
+              <MdClear
+                className="text-black text-2xl mr-1 cursor-pointer"
+                onClick={() => {
+                  setText("");
+                  setSelectedProvince("");
+                  setSearchQuery("");
+                  setFilteredNationalParks([]);
+                }}
+              />
+            )}
+            <SpeechInput setText={setText} />
+          </div>
         </div>
 
         {/* แสดงผลลัพธ์ที่กรองแล้วใน dropdown */}
@@ -117,7 +131,11 @@ const SearchBox = () => {
                 <li
                   key={index}
                   className="px-6 py-2 cursor-pointer hover:bg-gray-100"
-                  onClick={() => handleSelectItem(item)}
+                  onClick={() => {
+                    setSelectedProvince(item);
+                    setText(item);
+                    setFilteredData([]);
+                  }}
                 >
                   {item}
                 </li>
@@ -128,21 +146,19 @@ const SearchBox = () => {
       </div>
 
       <div className="relative w-full ">
-        {/* ปุ่มหลัก */}
         <div
-          className="flex items-center h-[72px] border-gray-400 border p-3 rounded-lg shadow-lg w-full cursor-pointer"
-          onClick={() => setIsOpenNationalPark(!isOpenNationalPark)} // คลิกเพื่อเปิด/ปิด
+          className="flex items-center relative h-[72px] border-gray-400 border p-3 rounded-lg shadow-lg w-full cursor-pointer"
+          onClick={() => setIsOpenNationalPark(!isOpenNationalPark)}
         >
-          <FaMountain className="w-5 h-5 text-green-600" />{" "}
-          {/* เปลี่ยนเป็นไอคอนของภูเขา */}
+          <FaMountain className="w-5 h-5 text-green-600" />
           <div className="flex flex-col items-start gap-1 ml-5">
             <p className="text-gray-500 text-sm">อุทยานแห่งชาติ</p>
             <p className="text-lg font-medium text-gray-900">
               {selectedNationalPark}
             </p>
           </div>
+          <FaChevronDown className="w-5 h-5 text-gray-500 absolute right-3" />
         </div>
-
         {/* Dropdown */}
         {isOpenNationalPark && (
           <ul className="absolute left-0 mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto z-10">
@@ -158,14 +174,14 @@ const SearchBox = () => {
                 key={index}
                 className="p-3 hover:bg-gray-100 cursor-pointer"
                 onClick={() => {
-                  setSelectedNationalPark(nationalPark.name); // เปลี่ยนค่าให้เป็นชื่อของอุทยานแห่งชาติ
-                  setIsOpenNationalPark(false); // ปิด dropdown หลังเลือก
+                  setSelectedNationalPark(nationalPark.name);
+                  setIsOpenNationalPark(false);
                   setSearchQuery("");
                 }}
               >
-                <p className="font-medium">🌳 {nationalPark.name}</p>{" "}
+                <p className="font-medium">🌳 {nationalPark.name}</p>
                 <p className="text-gray-500 text-sm">
-                  จังหวัด: {nationalPark.province} {/* แสดงจังหวัด */}
+                  จังหวัด: {nationalPark.province}
                 </p>
               </li>
             ))}
