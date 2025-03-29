@@ -5,16 +5,7 @@ import { AnniversaryTrip } from "@/data/trip";
 import { TfiLocationPin } from "react-icons/tfi";
 import { MdOutlineDateRange } from "react-icons/md";
 import TripDialog from "../TripDialog/TripDialog";
-type Trip = {
-  id: number | string;
-  name: string;
-  location: string;
-  date: string;
-  image: string;
-  name_th: string;
-  description: string;
-};
-
+import { Trip } from "@/types/RecentTrips";
 const RecentTrips = () => {
   const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
 

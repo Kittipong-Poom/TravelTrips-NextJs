@@ -78,7 +78,7 @@ const SearchBox = () => {
       );
       setFilteredNationalParks(filteredParks);
     } else {
-      setFilteredNationalParks(nationalParks); // ถ้าไม่มีการเลือกจังหวัด กรองอุทยานทั้งหมด
+      setFilteredNationalParks(nationalParks);
     }
   };
   useEffect(() => {

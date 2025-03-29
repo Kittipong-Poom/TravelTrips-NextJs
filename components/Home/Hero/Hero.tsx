@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-800 opacity-70"></div>
       {/* Video */}
       <video
-        src="/images/hero2.mp4"
+        src="/images/hero1.mp4"
         autoPlay
         muted
         loop

@@ -13,9 +13,7 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import L from "leaflet";
 import "leaflet-fullscreen";
 import "@/types/leaflet-extensions";
-
 // eslint-disable-next-line @typescript-eslint/no-namespace
-
 const FullscreenButton = () => {
   const map = useMap();
   useEffect(() => {
