@@ -25,12 +25,12 @@ const City = () => {
               <div className="flex items-center justify-center w-[90px] text-lg font-semibold">
                 <span>{data.count}</span>
               </div>
-              <button className="flex items-center text-xs text-blue-800 bg-blue-200 px-3 py-1 rounded-full hover:bg-blue-300 duration-200">
-                <Link href={`/dashboard/${data.id}${data.name}`}>
+              <Link href={`/dashboard/${data.id}${data.name}`}>
+                <button className="flex items-center text-xs text-black bg-green-200 px-3 py-1 rounded-full hover:bg-green-300 transition duration-200">
                   View Trips
                   <MdChevronRight className="ml-1 h-4 w-4" />
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           </li>
         ))}

@@ -6,8 +6,8 @@ import Link from "next/link";
 import BaseIcon from "@/components/BaseIcons/BaseIcon";
 const CityDetail = () => {
   const params = useParams();
-  const { id } = params;
-  const city = Cities.find((c) => c.id === parseInt(id as string, 10));
+  const { cityId } = params;
+  const city = Cities.find((c) => c.cityId === parseInt(cityId as string, 10));
 
   if (!city) return <p>City not found!</p>;
 

@@ -41,13 +41,13 @@ const DestinationSlider = () => {
               <Image
                 className="h-full w-full object-cover rounded-lg"
                 src={data.image}
-                alt={data.country}
+                alt={data.location}
                 width={500}
                 height={500}
               />
             </div>
             {/* TextContent */}
-            <h1 className="text-lg font-semibold mt-4">{data.country}</h1>
+            <h1 className="text-lg font-semibold mt-4">{data.location}</h1>
             <p className="text-sm text-gray-600">{data.travelers} Travelers</p>
           </div>
         );

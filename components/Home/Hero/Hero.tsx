@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className="relative w-full h-[100vh] sm:h-[100vh]">
       {/* overLay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-800 opacity-70"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gray-800  opacity-800 opacity-70"></div>
       {/* Video */}
       <video
         src="/images/hero1.mp4"
