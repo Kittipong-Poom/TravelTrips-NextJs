@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/constant/constant";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -11,7 +12,8 @@ type Props = {
 
 const Nav = ({ openNav }: Props) => {
   const [navBg, setNavBg] = useState<boolean>(false);
-
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   useEffect(() => {
     const handler = () => {
       if (window.scrollY >= 90) setNavBg(true);
@@ -34,7 +36,7 @@ const Nav = ({ openNav }: Props) => {
           </div>
           <h1
             className={`text-xl md:text-2xl uppercase font-bold ${
-              navBg ? "text-white" : "text-black mix-blend-difference"
+              isHome ? "text-white" : navBg ? "text-white" : "text-black"
             }`}
           >
             NatureTrip
@@ -46,10 +48,13 @@ const Nav = ({ openNav }: Props) => {
             return (
               <Link href={link.url} key={link.id}>
                 <p
-                  className={`relative text-base font-medium w-fit block after:block after:content-[''] 
-    after:absolute after:h-[3px] after:w-full after:scale-x-0 after:hover:scale-x-100 
-    after:transition duration-300 after:origin-right cursor-pointer 
-    mix-blend-difference`}
+                  className={`relative text-base font-medium w-fit block 
+                  after:block after:content-[''] after:absolute after:bottom-0 after:left-0 
+                  after:h-[2px] after:w-full after:bg-white after:scale-x-0 
+                  after:transition-transform after:duration-300 after:origin-left 
+                  hover:after:scale-x-100 
+                  ${isHome ? "text-white" : navBg ? "text-white" : "text-black"}
+                `}
                 >
                   {link.label}
                 </p>
