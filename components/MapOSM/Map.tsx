@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable-next-line @typescript-eslint/no-unused-expressions */
+
 import { useEffect, useState } from "react";
 import {
   MapContainer,
