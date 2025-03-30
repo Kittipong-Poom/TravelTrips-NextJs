@@ -30,8 +30,6 @@ const checkFullscreen = (setIsFullscreen: (state: boolean) => void) => {
   };
 
   const isFull = !!(document.fullscreenElement || doc.webkitFullscreenElement);
-
-  console.log("isFullscreen:", isFull);
   setIsFullscreen(isFull);
 };
 // ✅ ป้องกัน iOS ออกจาก fullscreen เอง
@@ -40,9 +38,7 @@ const FullscreenButton = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    const fullscreenControl = L.control
-      .fullscreen({ position: "topright" })
-      .addTo(map);
+    L.control.fullscreen({ position: "topright" }).addTo(map);
 
     document.addEventListener("fullscreenchange", () =>
       checkFullscreen(setIsFullscreen)
@@ -50,8 +46,8 @@ const FullscreenButton = () => {
     document.addEventListener("webkitfullscreenchange", () =>
       checkFullscreen(setIsFullscreen)
     );
+
     return () => {
-      map.removeControl(fullscreenControl);
       document.removeEventListener("fullscreenchange", () =>
         checkFullscreen(setIsFullscreen)
       );
@@ -60,6 +56,7 @@ const FullscreenButton = () => {
       );
     };
   }, [map]);
+
   useEffect(() => {
     if (isFullscreen && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
       setTimeout(() => {
@@ -74,6 +71,7 @@ const FullscreenButton = () => {
       }, 500);
     }
   }, [isFullscreen]);
+
   return null;
 };
 
