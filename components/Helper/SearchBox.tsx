@@ -69,13 +69,26 @@ const SearchBox = () => {
     }
   };
   const filterNationalParks = () => {
-    if (selectedProvince) {
+    if (selectedProvince && searchQuery) {
       const filtered = nationalParks.filter(
         (park) =>
           park.province
             .toLowerCase()
             .includes(selectedProvince.toLowerCase()) &&
-          park.name.toLowerCase().includes(searchQuery.toLowerCase())
+          (park.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            park.province.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+      setFilteredNationalParks(filtered);
+    } else if (selectedProvince) {
+      const filtered = nationalParks.filter((park) =>
+        park.province.toLowerCase().includes(selectedProvince.toLowerCase())
+      );
+      setFilteredNationalParks(filtered);
+    } else if (searchQuery) {
+      const filtered = nationalParks.filter(
+        (park) =>
+          park.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          park.province.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredNationalParks(filtered);
     } else {
@@ -84,13 +97,14 @@ const SearchBox = () => {
   };
   useEffect(() => {
     filterProvinces(debouncedText);
-    setSelectedNationalPark("");
-    setFilteredNationalParks([]);
+    if (debouncedText === "") {
+      setFilteredData([]);
+    }
   }, [debouncedText]);
 
   useEffect(() => {
     filterNationalParks();
-  }, [searchQuery, selectedProvince]);
+  }, [searchQuery, selectedProvince, nationalParks]);
 
   return (
     <div
@@ -116,6 +130,8 @@ const SearchBox = () => {
                   setSelectedProvince("");
                   setSearchQuery("");
                   setFilteredNationalParks([]);
+                  setSelectedNationalPark("");
+                  setFilteredData([]);
                 }}
               />
             )}
@@ -157,6 +173,13 @@ const SearchBox = () => {
               {selectedNationalPark}
             </p>
           </div>
+
+          {selectedNationalPark && (
+            <MdClear
+              className="w-5 h-5 text-gray-500 absolute right-10"
+              onClick={() => setSelectedNationalPark("")}
+            />
+          )}
           <FaChevronDown className="w-5 h-5 text-gray-500 absolute right-3" />
         </div>
         {/* Dropdown */}
@@ -169,6 +192,7 @@ const SearchBox = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+
             {filteredNationalParks.map((nationalPark, index) => (
               <li
                 key={index}

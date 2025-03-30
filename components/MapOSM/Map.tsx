@@ -13,24 +13,7 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import L from "leaflet";
 import "leaflet-fullscreen";
 import "@/types/leaflet-extensions";
-// eslint-disable-next-line @typescript-eslint/no-namespace
-const FullscreenButton = () => {
-  const map = useMap();
-  useEffect(() => {
-    const fullscreenControl = L.control
-      .fullscreen({
-        position: "topright",
-      })
-      .addTo(map);
-
-    return () => {
-      map.removeControl(fullscreenControl);
-    };
-  }, [map]);
-
-  return null;
-};
-
+// ✅ กำหนดไอคอน custom
 const customIcon = new L.Icon({
   iconUrl: "/images/marker-red.png",
   iconSize: [42, 45],
@@ -38,7 +21,62 @@ const customIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
+// ✅ ฟังก์ชันตรวจสอบ fullscreen บน iOS
+const checkFullscreen = (setIsFullscreen: (state: boolean) => void) => {
+  const doc = document as Document & {
+    webkitFullscreenElement?: Element;
+    webkitRequestFullscreen?: () => Promise<void>;
+  };
 
+  const isFull = !!(document.fullscreenElement || doc.webkitFullscreenElement);
+
+  console.log("isFullscreen:", isFull);
+  setIsFullscreen(isFull);
+};
+// ✅ ป้องกัน iOS ออกจาก fullscreen เอง
+const FullscreenButton = () => {
+  const map = useMap();
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const fullscreenControl = L.control
+      .fullscreen({ position: "topright" })
+      .addTo(map);
+
+    document.addEventListener("fullscreenchange", () =>
+      checkFullscreen(setIsFullscreen)
+    );
+    document.addEventListener("webkitfullscreenchange", () =>
+      checkFullscreen(setIsFullscreen)
+    );
+    return () => {
+      map.removeControl(fullscreenControl);
+      document.removeEventListener("fullscreenchange", () =>
+        checkFullscreen(setIsFullscreen)
+      );
+      document.removeEventListener("webkitfullscreenchange", () =>
+        checkFullscreen(setIsFullscreen)
+      );
+    };
+  }, [map]);
+  useEffect(() => {
+    if (isFullscreen && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      setTimeout(() => {
+        const doc = document as Document & {
+          webkitFullscreenElement?: Element;
+          webkitRequestFullscreen?: () => Promise<void>;
+        };
+        if (!document.fullscreenElement && !doc.webkitFullscreenElement) {
+          document.documentElement.requestFullscreen?.() ||
+            doc.webkitRequestFullscreen?.();
+        }
+      }, 500);
+    }
+  }, [isFullscreen]);
+  return null;
+};
+
+// ✅ Location Marker สามารถลากได้
 const LocationMarker = ({
   position,
   setPosition,
@@ -51,7 +89,6 @@ const LocationMarker = ({
       setPosition([e.latlng.lat, e.latlng.lng]);
     },
   });
-
   return (
     <Marker
       position={position}
@@ -70,7 +107,12 @@ const LocationMarker = ({
     </Marker>
   );
 };
+// ✅ คำนวณระยะทางระหว่างสองจุด
+const calculateDistance = (start: L.LatLngTuple, end: L.LatLngTuple) => {
+  return L.latLng(start).distanceTo(L.latLng(end)) / 1000;
+};
 
+// ✅ MapComponent หลัก
 const MapComponent = () => {
   const [startPosition, setStartPosition] = useState<L.LatLngTuple>([
     13.7563, 100.5018,
@@ -79,13 +121,16 @@ const MapComponent = () => {
     13.7611, 100.5018,
   ]);
   const [distance, setDistance] = useState<number>(0);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   useEffect(() => {
-    const startLatLng = L.latLng(startPosition);
-    const endLatLng = L.latLng(endPosition);
-    const dist = startLatLng.distanceTo(endLatLng);
-    setDistance(dist / 1000);
+    setDistance(calculateDistance(startPosition, endPosition));
   }, [startPosition, endPosition]);
+
+  const handleMarkerDragEnd = (newPosition: L.LatLngTuple) => {
+    setEndPosition(newPosition);
+    setShowPopup(true);
+  };
 
   return (
     <MapContainer
@@ -101,10 +146,15 @@ const MapComponent = () => {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <FullscreenButton />
       <LocationMarker position={startPosition} setPosition={setStartPosition} />
-      <LocationMarker position={endPosition} setPosition={setEndPosition} />
-      <Popup position={endPosition}>
-        ระยะทางจากจุดเริ่มต้นถึงปลายทาง: {distance.toFixed(2)} กิโลเมตร
-      </Popup>
+      <LocationMarker
+        position={endPosition}
+        setPosition={handleMarkerDragEnd}
+      />
+      {showPopup && (
+        <Popup position={endPosition}>
+          ระยะทางจากจุดเริ่มต้นถึงปลายทาง: {distance.toFixed(2)} กิโลเมตร
+        </Popup>
+      )}
     </MapContainer>
   );
 };
