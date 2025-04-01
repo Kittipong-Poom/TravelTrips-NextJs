@@ -1,32 +1,47 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Stepper from "@/components/Stepper/Stepper";
 import { hotelsData } from "@/data/data";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import "dayjs/locale/th";
 import buddhistEra from "dayjs/plugin/buddhistEra";
+
 dayjs.extend(buddhistEra);
+
 const Checkout = () => {
   const params = useParams();
   const router = useRouter();
   const bookingId = parseInt(params.bookingId as string, 10);
   const booking = hotelsData.find((h) => h.bookingId === bookingId);
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(10 * 60);
+  const [timeLeft, setTimeLeft] = useState<number>(10 * 60); // 10 นาที
   const price = parseFloat(booking?.price || "0");
   const vat = (price * 7) / 107;
   const subtotal = price - vat;
   const grandTotal = price;
-  const startTimer = () => {
-    if (timeLeft <= 0) return;
+  const startTimer = useCallback(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
     return () => clearInterval(timer);
-  };
+  }, []);
+  const checkTimeout = useCallback(() => {
+    if (timeLeft <= 0) {
+      router.push("/");
+    }
+  }, [timeLeft, router]);
+  useEffect(() => {
+    const cleanup = startTimer();
+    return cleanup;
+  }, [startTimer]);
+
+  useEffect(() => {
+    checkTimeout();
+  }, [timeLeft, checkTimeout]);
+
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -34,11 +49,6 @@ const Checkout = () => {
       2,
       "0"
     )}`;
-  };
-  const checkTimeout = () => {
-    if (timeLeft <= 0) {
-      router.push("/");
-    }
   };
   const handleNext = () => {
     if (activeStep < 2) {
@@ -49,15 +59,9 @@ const Checkout = () => {
     dayjs.locale("en");
     return dayjs(date).format("DD MMMM YYYY");
   };
-  if (!booking) return <p className="text-red-500">Hotel not found!</p>;
-  useEffect(() => {
-    const cleanup = startTimer();
-    return cleanup;
-  }, []);
-
-  useEffect(() => {
-    checkTimeout();
-  }, [timeLeft]);
+  if (!booking) {
+    return <p className="text-red-500">Hotel not found!</p>;
+  }
   return (
     <div className="bg-gray-100 min-h-screen p-6 flex flex-col items-center">
       {/* Stepper แยกออกมาและอยู่ด้านบนสุด */}
