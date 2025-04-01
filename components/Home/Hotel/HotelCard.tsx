@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaHotel } from "react-icons/fa6";
+import Link from "next/link";
 type Props = {
   hotel: {
     id: number;
@@ -13,6 +14,7 @@ type Props = {
     rating: number;
     reviews: string;
     price: string;
+    hotelId: number;
   };
 };
 
@@ -27,14 +29,17 @@ const HotelCard = ({ hotel }: Props) => {
       { id: Date.now(), y: Math.random() * 20 },
     ]);
   };
-  const getRandomReviews = () => {
-    return Math.floor(Math.random() * (20000 - 1 + 1) + 1);
-  };
-  useEffect(() => {
+  const randomReviews = () => {
     const interval = setInterval(() => {
       setReviews(getRandomReviews().toString());
     }, 3000);
     return () => clearInterval(interval);
+  };
+  const getRandomReviews = () => {
+    return Math.floor(Math.random() * (20000 - 1 + 1) + 1);
+  };
+  useEffect(() => {
+    randomReviews();
   }, []);
   return (
     <div>
@@ -64,13 +69,15 @@ const HotelCard = ({ hotel }: Props) => {
         {/* overLay */}
         <div className="absolute inset-0 bg-black opacity-25"></div>
         {/* Image */}
-        <Image
-          src={hotel.image}
-          alt={hotel.name}
-          width={500}
-          height={500}
-          className="overflow-hidden h-full w-full transition-all duration-300 object-cover group-hover:scale-110"
-        />
+        <Link href={`/${hotel.id}${hotel.name}`}>
+          <Image
+            src={hotel.image}
+            alt={hotel.name}
+            width={500}
+            height={500}
+            className="overflow-hidden h-full w-full transition-all duration-300 object-cover group-hover:scale-110"
+          />
+        </Link>
       </div>
       {/* Content */}
       <div>

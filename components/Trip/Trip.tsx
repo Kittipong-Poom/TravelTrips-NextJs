@@ -63,7 +63,7 @@ const Page = () => {
           {AnniversaryTrip[activeIndex].name}
         </h2>
         <div className="flex items-center font-light text-sm text-gray-600">
-          <CiLocationOn />
+          <CiLocationOn className="text-red-500 w-5 h-5" />
           <p className="ml-2">{AnniversaryTrip[activeIndex].location}</p>
         </div>
         <p className="text-sm text-gray-500">
