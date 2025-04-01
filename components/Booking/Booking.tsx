@@ -183,7 +183,7 @@ const Checkout = () => {
               <div>
                 <h4 className="font-semibold">Lowest price guarantee</h4>
                 <p className="text-sm text-gray-600">
-                  Find it cheaper? We'll refund the difference
+                  Find it cheaper? We&apos;ll refund the difference
                 </p>
               </div>
             </div>
