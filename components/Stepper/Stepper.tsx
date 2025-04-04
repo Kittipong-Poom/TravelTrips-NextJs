@@ -15,9 +15,9 @@ export default function HorizontalLinearStepper({
       <Stepper
         activeStep={activeStep}
         sx={{
-          "& .MuiStepIcon-root": { color: "gray" }, // Default
-          "& .MuiStepIcon-root.Mui-active": { color: "green" }, // Active
-          "& .MuiStepIcon-root.Mui-completed": { color: "green" }, // Completed
+          "& .MuiStepIcon-root": { color: "gray" },
+          "& .MuiStepIcon-root.Mui-active": { color: "green" },
+          "& .MuiStepIcon-root.Mui-completed": { color: "green" },
         }}
       >
         {steps.map((label) => (
@@ -25,9 +25,9 @@ export default function HorizontalLinearStepper({
             <StepLabel
               StepIconProps={{
                 sx: {
-                  color: "gray", // Default
-                  "&.Mui-active": { color: "green" }, // Active
-                  "&.Mui-completed": { color: "green" }, // Completed
+                  color: "gray",
+                  "&.Mui-active": { color: "green" },
+                  "&.Mui-completed": { color: "green" },
                 },
               }}
               sx={{

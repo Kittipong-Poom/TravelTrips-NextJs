@@ -1,9 +1,9 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { CgCalendar } from "react-icons/cg";
 import { TfiLocationPin } from "react-icons/tfi";
-import Tooltip from "@/components/Helper/Tooltip"; // ปรับ path ตามโปรเจกต์ของคุณ
+import Tooltip from "@/components/Helper/Tooltip";
 
 interface TripDialogProps {
   onClose: () => void;

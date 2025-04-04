@@ -24,7 +24,7 @@ const HotelDetailPage = () => {
   if (!hotel) return <p className="text-red-500">Hotel not found!</p>;
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-6 pt-28">
-      <div className="l w-full bg-white shadow-xl rounded-2xl overflow-hidden">
+      <div className=" w-full bg-white shadow-xl rounded-2xl overflow-hidden">
         <div className="relative h-[400px]">
           <Swiper
             modules={[Navigation, Pagination]}
@@ -51,26 +51,27 @@ const HotelDetailPage = () => {
           <h1 className="text-black text-3xl font-bold text-center">
             {hotel.name}
           </h1>
-          <div className="mt-6 flex justify-between items-center">
-            <div className=" ml-4">
+          <div className="mt-6  justify-between grid grid-cols-2 items-center">
+            <div className="ml-4">
               <h2 className="text-2xl font-bold text-gray-800">
                 {hotel.location}
               </h2>
-              <p className="mt-2 text-gray-600 w-[660px]">
-                {hotel.description}
-              </p>
+              <p className="mt-2 text-gray-600 ">{hotel.description}</p>
             </div>
             {/* ปุ่ม Book Now */}
-            <Link
-              href={`/${hotel?.hotelId}${hotel?.name}/${hotel?.bookingId}${hotel?.name}`}
-            >
-              <button className="relative bg-[#FF6F00] text-white mt-4 font-medium text-[17px] px-4 py-[0.35em] pl-5 h-[2.8em] rounded-[0.9em] flex items-center overflow-hidden cursor-pointer shadow-[inset_0_0_1.6em_-0.6em_#c98c3c] group">
-                <span className="mr-10">Book Now</span>
-                <div className="absolute right-[0.3em] bg-white h-[2.2em] w-[2.2em] rounded-[0.7em] flex items-center justify-center transition-all duration-300 group-hover:w-[calc(100%-0.6em)] shadow-[0.1em_0.1em_0.6em_0.2em_#c98c3c] active:scale-95">
-                  <BaseIcon icon="Arrow" className="w-5 h-5 text-black" />
-                </div>
+            <div className="flex justify-end mr-4">
+              <button className="relative bg-[#FF6F00] text-white mt-4 w-[200px] font-medium text-[17px] px-4 py-[0.35em] pl-5 h-[2.8em] rounded-[0.9em] flex items-center overflow-hidden cursor-pointer shadow-[inset_0_0_1.6em_-0.6em_#c98c3c] group">
+                <Link
+                  href={`/hotel/${hotel?.hotelId}${hotel?.name}/${hotel?.bookingId}${hotel?.name}`}
+                  className="flex justify-end"
+                >
+                  <span className="mr-10">Book Now</span>
+                  <div className="absolute right-[0.3em] bg-white h-[2.2em] w-[2.2em] top-[0.3em] rounded-[0.7em] flex items-center justify-center transition-all duration-300 group-hover:w-[calc(100%-0.6em)] shadow-[0.1em_0.1em_0.6em_0.2em_#c98c3c] active:scale-95">
+                    <BaseIcon icon="Arrow" className="w-5 h-5  text-black" />
+                  </div>
+                </Link>
               </button>
-            </Link>
+            </div>
           </div>
 
           {/* Rating & Price */}

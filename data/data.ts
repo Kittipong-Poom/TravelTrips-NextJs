@@ -104,6 +104,8 @@ export const hotelsData = [
     rating: 4.7,
     reviews: "0",
     price: "860 Bath",
+    checkIn: new Date("2024-9-10"),
+    checkOut: new Date("2024-9-11"),
     highlights: [
       "Beautiful view",
       "Experience Lee Su culture",
@@ -122,7 +124,7 @@ export const hotelsData = [
   {
     id: 3,
     hotelId: 3,
-    bookingId: 4,
+    bookingId: 3,
     image: "/images/fincy.jpg",
     images: [
       "/images/fincy1.jpg",
@@ -137,6 +139,8 @@ export const hotelsData = [
     rating: 4.3,
     reviews: "0",
     price: "2800 Bath",
+    checkIn: new Date("2024-11-09"),
+    checkOut: new Date("2024-11-10"),
     highlights: [
       "Stunning Mountain Views",
       "Authentic Thai Hospitality",
@@ -170,6 +174,8 @@ export const hotelsData = [
     rating: 4.5,
     reviews: "0",
     price: "950 Bath",
+    checkIn: new Date("2025-01-01"),
+    checkOut: new Date("2025-01-02"),
     highlights: [
       "Sea Fog",
       "Closer to Nature",

@@ -18,7 +18,7 @@ const RecentTrips = () => {
   };
   const latestTrip = {
     ...AnniversaryTrip[0],
-    name_th: AnniversaryTrip[0].name_th || "", // กำหนดค่าเริ่มต้นให้กับ name_th
+    name_th: AnniversaryTrip[0].name_th || "",
   };
   return (
     <div>

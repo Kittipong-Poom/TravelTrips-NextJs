@@ -17,7 +17,6 @@ type Props = {
     hotelId: number;
   };
 };
-
 const HotelCard = ({ hotel }: Props) => {
   const [likeCount, setLikeCount] = useState<number>(0);
   const [showHeart, setShowHeart] = useState<{ id: number; y: number }[]>([]);
@@ -69,7 +68,7 @@ const HotelCard = ({ hotel }: Props) => {
         {/* overLay */}
         <div className="absolute inset-0 bg-black opacity-25"></div>
         {/* Image */}
-        <Link href={`/${hotel.id}${hotel.name}`}>
+        <Link href={`/hotel/${hotel.id}${hotel.name}`}>
           <Image
             src={hotel.image}
             alt={hotel.name}

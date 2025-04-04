@@ -36,14 +36,6 @@ const CityDetail = () => {
               Explore the beautiful city of {city.name} with stunning views,
               rich history, and cultural attractions.
             </p>
-            <Link href={`/dashboard/${city.id}${city.name}/bookingId`}>
-              <button className="relative bg-[rgb(52,110,218)] text-white mt-4 font-medium text-[17px] px-4 py-[0.35em] pl-5 h-[2.8em] rounded-[0.9em] flex items-center overflow-hidden cursor-pointer shadow-[inset_0_0_1.6em_-0.6em_#714da6] group">
-                <span className="mr-10">Book Now</span>
-                <div className="absolute right-[0.3em] bg-white h-[2.2em] w-[2.2em] rounded-[0.7em] flex items-center justify-center transition-all duration-300 group-hover:w-[calc(100%-0.6em)] shadow-[0.1em_0.1em_0.6em_0.2em_#7b52b9] active:scale-95">
-                  <BaseIcon icon="Arrow" className="w-5 h-5 text-black" />
-                </div>
-              </button>
-            </Link>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-gray-200 p-4 rounded-lg">
                 <h2 className="text-lg font-bold">Highlights</h2>

@@ -17,6 +17,7 @@ const News = () => {
             image="/images/newsmai.jpg"
             title="Top 10 Must-Visit Destinations in Chiang Mai"
             date="20 January 2025"
+            newsId="chiangmai-2025"
           />
         </div>
         <div
@@ -28,6 +29,7 @@ const News = () => {
             image="/images/tennan.jpg"
             title="10 Tourist attractions in Nan"
             date="25 January 2025"
+            newsId="nan-2025"
           />
         </div>
         <div
@@ -39,6 +41,7 @@ const News = () => {
             image="/images/tench.png"
             title="Top 10 Scenic Spots in Chiang Rai"
             date="23 January 2025"
+            newsId="chaingrai-2025"
           />
         </div>
         <div
@@ -50,6 +53,7 @@ const News = () => {
             image="/images/tenkrabi.jpg"
             title="10 Best Natural Wonders in Krabi"
             date="28 January 2025"
+            newsId="krabi-2025"
           />
         </div>
       </div>
