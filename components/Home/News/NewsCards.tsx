@@ -11,13 +11,13 @@ const NewsCards = ({ image, title, date, newsId }: Props) => {
   return (
     <div>
       <Link href={`/${newsId}`} passHref>
-        <div className="h-[300px]">
+        <div className="h-[300px] relative overflow-hidden rounded-lg group cursor-pointer">
           <Image
             src={image}
             width={500}
             height={500}
             alt={title}
-            className="w-full h-full object-cover rounded-lg cursor-pointer"
+            className="w-full h-full object-cover rounded-lg cursor-pointer absolute inset-0 transition-all duration-300 group-hover:scale-110"
           />
         </div>
       </Link>

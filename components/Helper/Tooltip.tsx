@@ -17,7 +17,7 @@ const Tooltip: React.FC<{ text: string; children: React.ReactNode }> = ({
       {visible && (
         <motion.div
           ref={tooltipRef}
-          className="absolute origin-bottom-right font-medium mb-2 bg-white text-black text-base rounded p-2 w-max max-w-xs"
+          className="absolute origin-bottom-right  mb-2  text-white  font-medium text-sm bg-[#1A1F2C] rounded-lg  text-center p-2 w-max max-w-xs"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}

@@ -37,7 +37,7 @@ const RecentTrips = () => {
           <div className="mt-3 font-medium text-center md:text-left">
             <p>{latestTrip.name}</p>
             <div className="flex items-center justify-center md:justify-start mb-2">
-              <TfiLocationPin className="mr-1" />
+              <TfiLocationPin className="mr-1 text-red-500" />
               <span className="text-xs text-gray-500">
                 {latestTrip.location}
               </span>

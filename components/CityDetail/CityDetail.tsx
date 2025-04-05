@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { Cities } from "@/data/city";
 import Link from "next/link";
 import BaseIcon from "@/components/BaseIcons/BaseIcon";
+import RatingComponent from "../Rating/RatingComponent";
 const CityDetail = () => {
   const params = useParams();
   const { cityId } = params;
@@ -23,32 +24,82 @@ const CityDetail = () => {
               loop
               muted
             />
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-              <h1 className="text-white text-4xl font-bold">{city.name}</h1>
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <h1 className="text-white text-5xl font-extrabold font-mono text-shadow-lg">
+                {city.name}
+              </h1>
             </div>
           </div>
 
           <div className="p-6">
-            <p className="text-lg text-gray-600">
-              Number of Trips: {city.count}
-            </p>
-            <p className="mt-4 text-gray-700 leading-relaxed">
-              Explore the beautiful city of {city.name} with stunning views,
-              rich history, and cultural attractions.
-            </p>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-gray-200 p-4 rounded-lg">
-                <h2 className="text-lg font-bold">Highlights</h2>
-                <ul className="mt-2 text-gray-600 list-disc pl-4">
-                  <li>Beautiful landmarks</li>
-                  <li>Rich history and culture</li>
-                  <li>Delicious local food</li>
-                </ul>
+            <div className="bg-white p-6 rounded-xl shadow-md space-y-4 ">
+              <div className="flex items-center gap-2 justify-center">
+                <span className="text-green-600 font-bold text-lg">Trips:</span>
+                <p className="text-lg font-medium text-gray-800">
+                  {city.count} journeys explored
+                </p>
               </div>
 
-              <div className="bg-gray-200 p-4 rounded-lg">
-                <h2 className="text-lg font-bold">Reviews</h2>
-                <p className="mt-2 text-gray-600">JaneDoe Prisma</p>
+              <p className="text-gray-700 leading-relaxed text-base flex justify-center">
+                Discover the beauty and charm of {city.name}, with breathtaking
+                nature and unforgettable experiences—from scenic trails to
+                exciting attractions!
+              </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-green-100 p-6 rounded-xl shadow-sm">
+                <h2 className="text-xl font-semibold text-green-900 mb-4">
+                  Highlights
+                </h2>
+                <div className="space-y-4">
+                  {city.highlights.map((highlight, index) => {
+                    const googleMapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
+                      highlight
+                    )}`;
+                    return (
+                      <div key={index} className="text-base">
+                        <a
+                          href={googleMapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-green-600 hover:text-green-800 transition duration-300"
+                        >
+                          {highlight}
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="bg-green-200 p-6 rounded-xl shadow-sm">
+                <h2 className="text-xl font-semibold text-green-900 mb-4">
+                  Reviews
+                </h2>
+                {city.reviews && city.reviews.length > 0 ? (
+                  <ul className="space-y-4">
+                    {city.reviews.map((review, index) => (
+                      <li key={index} className="border-b pb-3 border-gray-200">
+                        <div className="flex items-center mb-2">
+                          <span className="font-semibold text-gray-800">
+                            {review.name}
+                          </span>
+                          <span className="text-gray-500 text-sm ml-2 flex items-center">
+                            <p className="mr-1.5 font-normal text-gray-800">
+                              {review.rating}
+                            </p>
+                            <RatingComponent rating={review.rating} />
+                          </span>
+                        </div>
+                        <p className="text-gray-600 text-sm mt-1">
+                          {review.review}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-600">No reviews available.</p>
+                )}
               </div>
             </div>
           </div>

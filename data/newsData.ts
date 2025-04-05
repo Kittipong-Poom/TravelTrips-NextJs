@@ -23,7 +23,7 @@ export const newsData = [
       {
         name: "Mae Tia Waterfall",
         description: "The place must go to Chom Thong, Chiang Mai.",
-        image: "/images/news/chaingmai/maetia.jfif",
+        image: "/images/news/chaingmai/maetia.jpg",
       },
       {
         name: "Doi Inthanon",
@@ -126,12 +126,12 @@ export const newsData = [
         name: "Phu Chi Fa",
         description:
           "A breathtaking mountain peak with a sea of mist at sunrise.",
-        image: "/images/news/chaingrai/phuchifa.jfif",
+        image: "/images/news/chaingrai/phuchifa.jpg",
       },
       {
         name: "Doi Tung",
         description: "A beautiful mountain with royal gardens and viewpoints.",
-        image: "/images/news/chaingrai/doitung.jfif",
+        image: "/images/news/chaingrai/doitung.jpg",
       },
       {
         name: "Khun Korn Waterfall",

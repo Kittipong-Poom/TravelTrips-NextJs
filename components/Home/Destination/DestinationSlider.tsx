@@ -28,18 +28,18 @@ const DestinationSlider = () => {
       responsive={responsive}
       infinite={true}
       autoPlay={true}
-      autoPlaySpeed={5000}
+      autoPlaySpeed={4000}
       keyBoardControl={true}
     >
       {destinationData.map((data) => {
         return (
           <div key={data.id} className="m-3">
-            <div className="relative h-[400px]">
+            <div className="relative h-[400px] overflow-hidden rounded-lg group">
               {/* OverLay */}
               <div className="absolute inset-0 bg-black opacity-25 rounded-lg"></div>
               {/* Image */}
               <Image
-                className="h-full w-full object-cover rounded-lg"
+                className="h-full w-full object-cover rounded-lg overflow-hidden group-hover:scale-110 transition-all duration-300"
                 src={data.image}
                 alt={data.location}
                 width={500}

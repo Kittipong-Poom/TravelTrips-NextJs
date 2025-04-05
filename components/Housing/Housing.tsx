@@ -14,7 +14,6 @@ const housing = () => {
             key={data.id}
             className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-4"
           >
-            {/* รูปภาพ */}
             <div className="h-full rounded-lg relative max-w-xs overflow-hidden">
               <Image
                 src={data.image}
@@ -24,7 +23,6 @@ const housing = () => {
                 className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out hover:scale-110"
               />
             </div>
-            {/* รายละเอียดของโรงแรม */}
             <div className="flex flex-col justify-between h-full">
               <div>
                 <p className="text-xl font-semibold">{data.name}</p>
@@ -33,13 +31,11 @@ const housing = () => {
                 </p>
                 <p className="text-sm mt-5 font-light">{data.date}</p>
               </div>
-              {/* จัดตำแหน่ง Rating & Price ให้ตรงกัน */}
               <div className="text-sm font-semibold">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
                   <p>{data.rating}</p>
                   <RatingComponent rating={data.rating} />
                 </div>
-
                 <div className="flex justify-between">
                   <p>{data.price}</p>
                   <div className="p-1  bg-green-200 flex items-center rounded-full w-[70px] ">
