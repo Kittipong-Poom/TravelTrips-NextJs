@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/th";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 import Payment from "./Payment";
-
+import NotFound from "@/components/404NotFound/NotFound";
 dayjs.extend(buddhistEra);
 
 const Checkout = () => {
@@ -18,7 +18,7 @@ const Checkout = () => {
   const bookingId = parseInt(params.bookingId as string, 10);
   const booking = hotelsData.find((h) => h.bookingId === bookingId);
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(10 * 60); // 10 นาที
+  const [timeLeft, setTimeLeft] = useState<number>(10 * 60);
   const price = parseFloat(booking?.price || "0");
   const vat = (price * 7) / 107;
   const subtotal = price - vat;
@@ -64,7 +64,11 @@ const Checkout = () => {
     return dayjs(date).format("DD MMMM YYYY");
   };
   if (!booking) {
-    return <p className="text-red-500">Hotel not found!</p>;
+    return (
+      <div>
+        <NotFound />
+      </div>
+    );
   }
   return (
     <div className="bg-gray-100 min-h-screen p-6 flex flex-col items-center">

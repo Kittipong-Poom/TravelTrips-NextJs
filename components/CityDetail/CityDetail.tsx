@@ -5,12 +5,14 @@ import { Cities } from "@/data/city";
 import Link from "next/link";
 import BaseIcon from "@/components/BaseIcons/BaseIcon";
 import RatingComponent from "../Rating/RatingComponent";
+import NotFound from "@/components/404NotFound/NotFound";
+
 const CityDetail = () => {
   const params = useParams();
   const { cityId } = params;
   const city = Cities.find((c) => c.cityId === parseInt(cityId as string, 10));
 
-  if (!city) return <p>City not found!</p>;
+  if (!city) return <NotFound />;
 
   return (
     <div className="bg-gray-100 min-h-screen p-6 pt-28">

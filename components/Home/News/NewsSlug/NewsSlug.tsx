@@ -4,11 +4,16 @@ import { useParams } from "next/navigation";
 import { newsData } from "@/data/newsData";
 import HoverCard from "@/components/Home/News/NewsSlug/HoverCard";
 import { motion } from "framer-motion";
+import NotFound from "@/components/404NotFound/NotFound";
 const NewsDetailPage = () => {
   const { newsId } = useParams();
   const newsItem = newsData.find((news) => news.id === newsId);
   if (!newsItem) {
-    return <p className="text-center text-red-500">ข่าวไม่พบ</p>;
+    return (
+      <div>
+        <NotFound />
+      </div>
+    );
   }
   return (
     <div className="pt-36 pb-16 w-[80%] mx-auto ">
