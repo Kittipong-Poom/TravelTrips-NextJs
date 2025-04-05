@@ -9,7 +9,7 @@ export const Cities = [
     count: 15,
     highlights: [
       "Kew Mae Pan Trail",
-      "Doi Inthanon",
+      "Doi innthanon",
       "Doi Luang Chiang Dao",
       "Mae Kampong",
       "Mae Tia Waterfall",
