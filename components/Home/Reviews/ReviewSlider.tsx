@@ -4,16 +4,20 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
-import { EffectCards } from "swiper/modules";
+import { EffectCards, Autoplay } from "swiper/modules";
 import { reviewData } from "@/data/data";
-import { FaStar } from "react-icons/fa6";
+import RatingComponent from "@/components/Rating/RatingComponent";
 const ReviewSlider = () => {
   return (
     <div>
       <Swiper
         effect={"cards"}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         grabCursor={true}
-        modules={[EffectCards]}
+        modules={[EffectCards, Autoplay]}
         className="md:w-[450px] md:h-[350px] w-[90%] h-[300px]"
       >
         {reviewData.map((data) => {
@@ -26,11 +30,7 @@ const ReviewSlider = () => {
                 </p>
                 {/* Icon */}
                 <div className="flex items-center mt-4">
-                  <FaStar className="md:w-6 md:h-6 w-3 h-3 text-yellow-600" />
-                  <FaStar className="md:w-6 md:h-6 w-3 h-3 text-yellow-600" />
-                  <FaStar className="md:w-6 md:h-6 w-3 h-3 text-yellow-600" />
-                  <FaStar className="md:w-6 md:h-6 w-3 h-3 text-yellow-600" />
-                  <FaStar className="md:w-6 md:h-6 w-3 h-3 text-yellow-600" />
+                  <RatingComponent rating={data.rating} />
                 </div>
                 {/* users profile */}
                 <div className="mt-10">
@@ -47,7 +47,7 @@ const ReviewSlider = () => {
                         {data.name}
                       </p>
                       <p className="text-gray-600 text-xs sm:text-base">
-                        Web Developer
+                        Traveler
                       </p>
                     </div>
                   </div>

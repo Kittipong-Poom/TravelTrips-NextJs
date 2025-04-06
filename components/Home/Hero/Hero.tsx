@@ -1,13 +1,22 @@
+import { useState } from "react";
 import SearchBox from "@/components/Helper/SearchBox";
+import BaseModal from "@/components/BaseModal/BaseModal";
 import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
+  const [text, setText] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleSearchClick = (text: string) => {
+    if (!text.trim()) {
+      setIsModalOpen(true);
+    } else {
+      setIsModalOpen(false);
+    }
+  };
   return (
     <div className="relative w-full h-[120vh] sm:h-[100vh]">
-      {/* overLay */}
       <div className="absolute top-0 left-0 w-full h-full bg-gray-800  opacity-800 opacity-70"></div>
-      {/* Video */}
       <video
         src="/images/hero1.mp4"
         autoPlay
@@ -16,7 +25,6 @@ const Hero = () => {
         preload="metadata"
         className="w-full h-full object-cover"
       />
-      {/* Text Content */}
       <div className="absolute z-[100] w-full h-full  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
         <div className="flex items-center justify-center flex-col w-full h-full">
           <div data-aos="fade-up">
@@ -27,10 +35,13 @@ const Hero = () => {
               Discover breathtaking natural wonders across Thailand and beyond.
             </p>
           </div>
-          {/* Search Box */}
-          <SearchBox />
+          <SearchBox text={text} setText={setText} />
           <Link
             href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSearchClick(text);
+            }}
             className="rounded px-14 md:px-28 -mt-4 py-2.5 overflow-hidden group bg-rose-600 relative hover:bg-gradient-to-r
              hover:from-red-500 hover:to-red-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-red-400 transition-all ease-out duration-300"
           >
@@ -40,6 +51,16 @@ const Hero = () => {
             ></span>
             <span className="relative font-bold">Search</span>
           </Link>
+
+          {isModalOpen && (
+            <BaseModal
+              onClose={() => setIsModalOpen(false)}
+              open={isModalOpen}
+              title={"กรุณาใส่ชื่อที่ต้องการจะไปก่อน"}
+              content={""}
+              className="mt-[25%] text-center"
+            />
+          )}
         </div>
       </div>
     </div>

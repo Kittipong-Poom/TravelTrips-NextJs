@@ -1,8 +1,12 @@
 import React from "react";
-import { FaStar } from "react-icons/fa6";
 import ReviewSlider from "./ReviewSlider";
+import { reviewData } from "@/data/data";
+import RatingComponent from "@/components/Rating/RatingComponent";
 
 const Review = () => {
+  const averageRating =
+    reviewData.reduce((sum, review) => sum + review.rating, 0) /
+    reviewData.length;
   return (
     <div className="pt-20 pb-20 flex items-center justify-center flex-col bg-gray-900">
       <div className="w-[80%] mx-auto grid items-center grid-cols-1 lg:grid-cols-2 gap-10">
@@ -12,21 +16,16 @@ const Review = () => {
             What our customers are saying us?
           </h1>
           <p className="mt-6 text-white ">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor
-            excepturi distinctio tenetur exercitationem possimus adipisci aut
-            quisquam illo sit ipsa?
+            The details here will tell the overall picture of the past tourism
+            of tourists who use the service.
           </p>
           {/* Ratings */}
           <div className="mt-6 flex items-center space-x-6">
             <div>
-              <p className="text-2xl font-bold text-white">4.99</p>
+              <p className="text-2xl font-bold text-white">{averageRating}</p>
               <p className="text-white mb-2">Overall Rating</p>
               <div className="flex items-center">
-                <FaStar className="w-4 h-4 text-amber-400" />
-                <FaStar className="w-4 h-4 text-amber-400" />
-                <FaStar className="w-4 h-4 text-amber-400" />
-                <FaStar className="w-4 h-4 text-amber-400" />
-                <FaStar className="w-4 h-4 text-amber-400" />
+                <RatingComponent rating={averageRating} />
               </div>
             </div>
           </div>

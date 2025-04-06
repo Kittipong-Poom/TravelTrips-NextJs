@@ -242,58 +242,66 @@ export const toursData = [
 export const reviewData = [
   {
     id: 1,
-    name: "John Doe",
+    name: "Suwicha Namsai",
     review:
-      "The service exceeded my expectations. The team was professional, and I couldn't be happier with the results. Highly recommended to everyone!",
-    image: "/images/u1.jpg",
+      "I had an unforgettable time hiking through the national park. The fresh air and lush greenery were just what I needed to relax and reset.",
+    image: "/images/profile/doremon.jpeg",
+    rating: 4.8,
   },
   {
     id: 2,
-    name: "Jane Smith",
+    name: "Nattapong Srisuk",
     review:
-      "I am thoroughly impressed with the attention to detail and quality. They truly understand customer needs and deliver outstanding results. Wonderful experience!",
-    image: "/images/u2.jpg",
+      "Exploring the waterfalls was such an incredible experience! The sound of rushing water and cool mist made it magical.",
+    image: "/images/profile/hideo.jpg",
+    rating: 4.6,
   },
   {
     id: 3,
-    name: "Michael Brown",
+    name: "Kannika Prasert",
     review:
-      "Exceptional quality and fantastic customer service! The project was delivered on time and exactly as I wanted. I will definitely use their services again.",
-    image: "/images/u3.jpg",
+      "Camping in the forest under the stars was beyond amazing. The night sky was so clear, and I felt truly connected to nature.",
+    image: "/images/profile/nerd.jpg",
+    rating: 4.9,
   },
   {
     id: 4,
-    name: "Emily Davis",
+    name: "Piyawat Rattanachai",
     review:
-      "Outstanding results! The team was efficient, and their professionalism was remarkable. Everything was done perfectly. I highly recommend their expertise to everyone.",
-    image: "/images/u1.jpg",
+      "Trekking to the mountain viewpoint was a challenge, but the breathtaking sunrise made it all worth it. Highly recommended for nature lovers!",
+    image: "/images/profile/nobita.jpg",
+    rating: 5.0,
   },
   {
     id: 5,
-    name: "Chris Wilson",
+    name: "Chonthicha Meesri",
     review:
-      "Amazing service! They exceeded all expectations and delivered a product that I am extremely happy with. The communication throughout the project was excellent.",
-    image: "/images/u2.jpg",
+      "The national park trails were well-marked and full of beauty. We spotted birds, butterflies, and even wild deer during our walk.",
+    image: "/images/profile/paman.jpg",
+    rating: 4.5,
   },
   {
     id: 6,
-    name: "Sarah Johnson",
+    name: "Thanawat Yimyam",
     review:
-      "Fantastic experience! They listened carefully to my requirements and delivered exactly what I needed. Their attention to detail is truly commendable.",
-    image: "/images/u3.jpg",
+      "What a peaceful place! I enjoyed kayaking on the lake surrounded by mountains. A perfect spot for anyone who loves calm and quiet.",
+    image: "/images/profile/shinchan.jpg",
+    rating: 4.7,
   },
   {
     id: 7,
-    name: "David Lee",
+    name: "Rachanee Boonsri",
     review:
-      "Absolutely incredible service! The team was supportive and responsive, making sure everything was perfect. I will definitely recommend them to my friends.",
-    image: "/images/u1.jpg",
+      "Nature here is untouched and beautiful. I spent the day walking through bamboo forests and enjoying the cool breeze. It was pure serenity.",
+    image: "/images/profile/hideo.jpg",
+    rating: 4.4,
   },
   {
     id: 8,
-    name: "Sophia White",
+    name: "Teerawat Kaewmanee",
     review:
-      "Five-star service from start to finish! The dedication and skill of the team made all the difference. Truly an exceptional experience I won’t forget.",
-    image: "/images/u2.jpg",
+      "One of the best eco-trips I’ve ever had! The local guides were friendly and knowledgeable, and the scenery was straight out of a postcard.",
+    image: "/images/profile/tom.jpg",
+    rating: 4.9,
   },
 ];

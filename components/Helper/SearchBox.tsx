@@ -12,9 +12,12 @@ import SpeechInput from "./SpeechInput";
 import { nationalParks } from "@/data/nationalPark";
 import { provinces } from "@/data/province";
 import { MdClear } from "react-icons/md";
-
+type Props = {
+  text: string;
+  setText: (value: string) => void;
+};
 dayjs.extend(buddhistEra);
-const SearchBox = () => {
+const SearchBox = ({ text, setText }: Props) => {
   const [selectedStartDate, setSelectedDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -23,7 +26,6 @@ const SearchBox = () => {
   const [countAdult, setCountAdult] = useState<number>(1);
   const [countRoom, setCountRoom] = useState<number>(1);
   const [countChild, setCountChild] = useState<number>(0);
-  const [text, setText] = useState<string>("");
   const [filteredNationalParks, setFilteredNationalParks] =
     useState(nationalParks);
   const [selectedProvince, setSelectedProvince] = useState<string>("");
