@@ -7,6 +7,7 @@ import { HiBars3BottomRight } from "react-icons/hi2";
 import { GiBurningForest } from "react-icons/gi";
 import LoginButton from "@/components/UserLogin/LoginLogoutButton";
 import UserGreetText from "@/components/UserLogin/UserGreetText";
+import { User } from "@supabase/auth-js";
 // import UploadAvatarModal from "@/components/BaseUploadAvatarModal/UploadAvatarModal";
 // import { Button } from "@headlessui/react";
 
@@ -16,7 +17,7 @@ type Props = {
 
 const Nav = ({ openNav }: Props) => {
   const [navBg, setNavBg] = useState<boolean>(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const isHome = pathname === "/";

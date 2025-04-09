@@ -4,13 +4,13 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { signout } from "@/lib/auth-actions";
-
+import { User } from "@supabase/auth-js";
 const LoginButton = ({
   setUser,
 }: {
-  setUser: React.Dispatch<React.SetStateAction<any>>;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }) => {
-  const [user, setLocalUser] = useState<any>(null);
+  const [user, setLocalUser] = useState<User | null>(null);
   const router = useRouter();
   const supabase = createClient();
 
