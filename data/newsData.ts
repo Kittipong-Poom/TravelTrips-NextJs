@@ -11,7 +11,7 @@ export const newsData = [
         image: "/images/news/chaingmai/suthep.jpg",
       },
       {
-        name: "Old City Temples",
+        name: "Chedi Luang Worawihan Temple",
         description: "A historic walk through Chiang Mai's culture.",
         image: "/images/news/chaingmai/oldcity.jpg",
       },

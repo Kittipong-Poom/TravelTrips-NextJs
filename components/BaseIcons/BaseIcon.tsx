@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from "react";
 const iconMap = {
   Arrow: lazy(() => import("./icons/Arrow")),
   "Arrow-left": lazy(() => import("./icons/Arrow-left")),
+  Google: lazy(() => import("./icons/Google")),
+  Github: lazy(() => import("./icons/Github")),
 };
 
 type IconName = keyof typeof iconMap;

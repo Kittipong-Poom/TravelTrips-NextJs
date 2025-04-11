@@ -83,3 +83,17 @@ export async function signInWithGoogle() {
 
   redirect(data.url);
 }
+
+export async function signInWithGithub() {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+  });
+
+  if (error) {
+    console.log(error);
+    redirect("/error");
+  }
+
+  redirect(data.url);
+}

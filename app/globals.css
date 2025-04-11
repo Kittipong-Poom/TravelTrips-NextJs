@@ -89,13 +89,14 @@
     --chart-5: 340 75% 55%;
   }
 }
-
+.toast .toast-description {
+  color: black !important;
+}
 .absolute button {
   width: 100%;
-  padding: 12px; /* ปรับให้มีขนาดปุ่มที่พอดี */
+  padding: 12px;
   border-radius: 8px;
-  background-color: #0e180e; /* สีพื้นหลังของปุ่ม */
-  color: white;
+  background-color: #0e180e;
 }
 
 @layer base {

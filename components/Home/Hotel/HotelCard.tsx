@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaHotel } from "react-icons/fa6";
 import Link from "next/link";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 type Props = {
   hotel: {
     id: number;
@@ -27,6 +29,14 @@ const HotelCard = ({ hotel }: Props) => {
       ...prevHearts,
       { id: Date.now(), y: Math.random() * 20 },
     ]);
+    toast("You have liked", {
+      description: `You have liked ${hotel.name} ${likeCount + 1} times`,
+      action: {
+        label: "Undo",
+        onClick: () => console.log("Undo"),
+      },
+      className: "text-black",
+    });
   };
   const randomReviews = () => {
     const interval = setInterval(() => {
@@ -65,6 +75,7 @@ const HotelCard = ({ hotel }: Props) => {
             ))}
           </AnimatePresence>
         </div>
+        <Toaster />
         {/* overLay */}
         <div className="absolute inset-0 bg-black opacity-25"></div>
         {/* Image */}

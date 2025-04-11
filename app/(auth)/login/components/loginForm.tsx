@@ -12,6 +12,8 @@ import { Label } from "@/components/ui/label";
 import { login } from "@/lib/auth-actions";
 import Link from "next/link";
 import SignInWithGoogleButton from "./SignInWithGoogleButton";
+import SignInWithGithub from "./SignInWithGithub";
+
 export function LoginForm({
   className,
   ...props
@@ -68,8 +70,8 @@ export function LoginForm({
                   Login
                 </Button>
                 <SignInWithGoogleButton />
+                <SignInWithGithub />
               </div>
-
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
                 <Link href="/signup" className="underline underline-offset-4">

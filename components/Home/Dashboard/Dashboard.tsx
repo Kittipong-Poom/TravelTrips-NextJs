@@ -4,13 +4,13 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import LinearProgressCountUp from "@/components/LinearProgressCountUp/LinearProgress";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import Transport from "@/components/Transport/Transport";
-import Trip from "@/components/Trip/Trip";
-import Stats from "@/components/Stats/Stats";
-import WorldMap from "@/components/WorldMap/WorldMap";
-import City from "@/components/City/City";
-import RecentTrips from "@/components/RecentTrips/RecentTrips";
-import Housing from "@/components/Housing/Housing";
+import Transport from "@/components/Home/Dashboard/Transport/Transport";
+import Trip from "@/components/Home/Dashboard/Trip/Trip";
+import Stats from "@/components/Home/Dashboard/Stats/Stats";
+import WorldMap from "@/components/Home/Dashboard/WorldMap/WorldMap";
+import City from "@/components/Home/Dashboard/City/City";
+import RecentTrips from "@/components/Home/Dashboard/RecentTrips/RecentTrips";
+import Housing from "@/components/Home/Dashboard/Housing/Housing";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);

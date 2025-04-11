@@ -1,9 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const DynamicMapComponent = dynamic(() => import("@/components/MapOSM/Map"), {
-  ssr: false,
-});
+const DynamicMapComponent = dynamic(
+  () => import("@/components/Home/Dashboard/MapOSM/Map"),
+  {
+    ssr: false,
+  }
+);
 const Map = () => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4">

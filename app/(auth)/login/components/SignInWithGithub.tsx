@@ -1,24 +1,24 @@
 "use client";
 
+import React from "react";
 import BaseIcon from "@/components/BaseIcons/BaseIcon";
 import { Button } from "@/components/ui/button";
-import { signInWithGoogle } from "@/lib/auth-actions";
-import React from "react";
+import { signInWithGithub } from "@/lib/auth-actions";
 
-const SignInWithGoogleButton = () => {
+const SignInWithGithub = () => {
   return (
     <Button
       type="button"
       variant="outline"
       className="w-full"
       onClick={() => {
-        signInWithGoogle();
+        signInWithGithub();
       }}
     >
-      <BaseIcon icon="Google" className="mr-2" />
-      Login with Google
+      <BaseIcon icon="Github" className="mr-2" />
+      Login with Github
     </Button>
   );
 };
 
-export default SignInWithGoogleButton;
+export default SignInWithGithub;

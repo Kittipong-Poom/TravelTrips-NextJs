@@ -18,10 +18,10 @@ const Payment = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [selectedPayment, setSelectedPayment] = useState<string>("paypal");
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardName, setCardName] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [cvv, setCvv] = useState("");
+  const [cardNumber, setCardNumber] = useState<string>("");
+  const [cardName, setCardName] = useState<string>("");
+  const [expiryDate, setExpiryDate] = useState<string>("");
+  const [cvv, setCvv] = useState<string>("");
 
   const paymentMethods = [
     {

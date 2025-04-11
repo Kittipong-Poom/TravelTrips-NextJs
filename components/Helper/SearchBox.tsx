@@ -1,3 +1,12 @@
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerTrigger,
+  DrawerClose,
+} from "@/components/ui/drawer";
 import React, { useEffect, useState } from "react";
 import { FaCalendarWeek } from "react-icons/fa";
 import { FaMountain, FaUserGroup } from "react-icons/fa6";
@@ -12,6 +21,8 @@ import SpeechInput from "./SpeechInput";
 import { nationalParks } from "@/data/nationalPark";
 import { provinces } from "@/data/province";
 import { MdClear } from "react-icons/md";
+import { Button } from "../ui/button";
+
 type Props = {
   text: string;
   setText: (value: string) => void;
@@ -256,78 +267,109 @@ const SearchBox = ({ text, setText }: Props) => {
         </div>
       </div>
       {/* 4th search input */}
-      <div className="flex items-center space-x-6">
-        <FaUserGroup className="w-6 h-6 text-green-600 cursor-pointer" />
-        {/* Parent container ต้องใช้ relative */}
-        <div className=" p-1 border-green-300 w-full rounded-lg relative cursor-pointer">
-          <div onClick={toggleDropdown}>
-            <p className="text-lg font-medium mb-[0.2rem]">People Count</p>
-            <div className="flex ">
-              <div className="mr-3">{countAdult} Adult,</div>
-              <div>{countRoom} Room</div>
-              {countChild > 0 && (
-                <div className="ml-3"> {countChild} Child</div>
-              )}
-            </div>
-            <FaChevronDown className="absolute right-2 top-7 hover:bg-green-300 cursor-pointer duration-200 rounded-lg" />
-          </div>
 
-          {/* Dropdown container */}
-          {isOpen && (
-            <div className="absolute left-0 top-full mt-2 bg-white shadow-md p-4 border rounded w-full z-50">
-              <span className="text-base flex items-center justify-between mb-5">
-                Room
-                <div className="p-1 border ml-11 rounded-full hover:bg-gray-200 duration-200">
-                  <IoRemoveOutline
-                    onClick={handleRoomRemove}
-                    className="w-6 h-6 "
-                  />
-                </div>
-                {countRoom}
-                <div className="p-1 border rounded-full hover:bg-gray-200 duration-200">
-                  <GoPlus onClick={handleRoomChange} className="w-6 h-6" />{" "}
-                </div>
-              </span>
-              <span className="text-base flex items-center justify-between mb-5">
-                <div>
-                  <p>Adult</p>
-                  <p className="text-xs font-light text-gray-700">
-                    Age 18 or more
-                  </p>
-                </div>
-                <div className="p-1 border rounded-full hover:bg-gray-200 duration-200">
-                  <IoRemoveOutline
-                    onClick={handleAdultRemove}
-                    className="w-6 h-6"
-                  />
-                </div>
-                {countAdult}
-                <div className="p-1 border rounded-full hover:bg-gray-200 duration-200">
-                  <GoPlus onClick={handleAdultChange} className="w-6 h-6" />{" "}
-                </div>
-              </span>
-              <span className="text-base flex items-center justify-between mb-5">
-                <div>
-                  <p>Child</p>
-                  <p className="text-xs font-light text-gray-700">
-                    Age 0-17 Years
-                  </p>
-                </div>
-                <div className="p-1 border ml-1.5 rounded-full hover:bg-gray-200 duration-200">
-                  <IoRemoveOutline
-                    onClick={handleChildRemove}
-                    className="w-6 h-6"
-                  />
-                </div>
-                {countChild}
-                <div className="p-1 border rounded-full hover:bg-gray-200 duration-200">
-                  <GoPlus onClick={handleChildChange} className="w-6 h-6" />{" "}
-                </div>
-              </span>
+      <Drawer open={isOpen} onOpenChange={setIsOpen}>
+        <div className="flex items-center space-x-6">
+          <FaUserGroup className="w-6 h-6 text-green-600" />
+          <DrawerTrigger asChild>
+            <div className="p-1 border-green-300 w-full rounded-lg relative cursor-pointer">
+              <p className="text-lg font-medium mb-[0.2rem]">People Count</p>
+              <div className="flex">
+                <div className="mr-3">{countAdult} Adult,</div>
+                <div>{countRoom} Room</div>
+                {countChild > 0 && (
+                  <div className="ml-3">{countChild} Child</div>
+                )}
+              </div>
+              <FaChevronDown className="absolute right-2 top-7" />
             </div>
-          )}
+          </DrawerTrigger>
         </div>
-      </div>
+
+        <DrawerContent>
+          <div className="mx-auto w-full max-w-sm p-4">
+            <DrawerHeader>
+              <DrawerTitle>People Count</DrawerTitle>
+            </DrawerHeader>
+
+            {/* Room */}
+            <div className="flex items-center justify-between mb-5">
+              <span className="text-base">Room</span>
+              <div className="flex items-center space-x-2">
+                <Button
+                  size="icon"
+                  onClick={() => updateCount(setCountRoom, -1)}
+                  disabled={countRoom <= 1}
+                >
+                  <IoRemoveOutline className="w-5 h-5" />
+                </Button>
+                <span>{countRoom}</span>
+                <Button
+                  size="icon"
+                  onClick={() => updateCount(setCountRoom, 1)}
+                >
+                  <GoPlus className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Adult */}
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <p>Adult</p>
+                <p className="text-xs text-gray-500">Age 18 or more</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button
+                  size="icon"
+                  onClick={() => updateCount(setCountAdult, -1)}
+                  disabled={countAdult <= 1}
+                >
+                  <IoRemoveOutline className="w-5 h-5" />
+                </Button>
+                <span>{countAdult}</span>
+                <Button
+                  size="icon"
+                  onClick={() => updateCount(setCountAdult, 1)}
+                >
+                  <GoPlus className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Child */}
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <p>Child</p>
+                <p className="text-xs text-gray-500">Age 0-17 years</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button
+                  size="icon"
+                  onClick={() => updateCount(setCountChild, -1)}
+                  disabled={countChild <= 0}
+                >
+                  <IoRemoveOutline className="w-5 h-5" />
+                </Button>
+                <span>{countChild}</span>
+                <Button
+                  size="icon"
+                  onClick={() => updateCount(setCountChild, 1)}
+                >
+                  <GoPlus className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+
+            <DrawerFooter>
+              <Button onClick={() => setIsOpen(false)}>Save</Button>
+              <DrawerClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 };

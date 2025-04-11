@@ -4,7 +4,7 @@ import { GoChevronRight } from "react-icons/go";
 import { AnniversaryTrip } from "@/data/trip";
 import { TfiLocationPin } from "react-icons/tfi";
 import { MdOutlineDateRange } from "react-icons/md";
-import TripDialog from "../TripDialog/TripDialog";
+import TripDialog from "../../../TripDialog/TripDialog";
 import { Trip } from "@/types/RecentTrips";
 const RecentTrips = () => {
   const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);

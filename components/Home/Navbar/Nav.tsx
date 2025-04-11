@@ -8,8 +8,6 @@ import { GiBurningForest } from "react-icons/gi";
 import LoginButton from "@/components/UserLogin/LoginLogoutButton";
 import UserGreetText from "@/components/UserLogin/UserGreetText";
 import { User } from "@supabase/auth-js";
-// import UploadAvatarModal from "@/components/BaseUploadAvatarModal/UploadAvatarModal";
-// import { Button } from "@headlessui/react";
 
 type Props = {
   openNav: () => void;
@@ -80,33 +78,20 @@ const Nav = ({ openNav }: Props) => {
                 <UserGreetText user={user} />
               </div>
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 lg:w-full w-48 bg-white rounded-md shadow-lg z-50 py-2">
-                  <div className="px-4 py-2 lg:hidden">
-                    <p className="text-sm">
+                <div className="absolute right-0 mt-2 lg:w-full w-[300px] bg-white rounded-md shadow-lg z-50 py-2">
+                  <div className="px-4 py-2 flex">
+                    <div className="text-sm">
                       Hello,{" "}
                       <span className="font-semibold">
-                        {user.user_metadata?.full_name ?? "User"}
+                        {user?.user_metadata?.full_name ?? "User"}
                       </span>
-                      !
-                    </p>
+                      <span className="block">
+                        {user?.user_metadata?.email ?? ""}
+                      </span>
+                    </div>
                   </div>
                   <div className="px-4 py-2 border-t border-gray-100">
                     <LoginButton setUser={setUser} />
-                    {/* <Button
-                      className="w-full px-4 text-center py-2 mt-4 text-sm text-blue-500"
-                      onClick={() => setIsUploadModalOpen(true)}
-                    >
-                      อัปโหลดรูปภาพ
-                    </Button>
-                    <UploadAvatarModal
-                      isOpen={isUploadModalOpen}
-                      onClose={() => setIsUploadModalOpen(false)}
-                      userId={user?.id}
-                      onUploadSuccess={(newAvatarUrl) => {
-                        user.user_metadata.avatar_url = newAvatarUrl;
-                        setIsUploadModalOpen(false);
-                      }}
-                    /> */}
                   </div>
                 </div>
               )}
@@ -116,7 +101,7 @@ const Nav = ({ openNav }: Props) => {
           )}
           <HiBars3BottomRight
             onClick={openNav}
-            className="w-8 h-8 cursor-pointer text-white lg:hidden mt-1"
+            className="w-8 h-8 cursor-pointer ml-2 text-black bg-white p-1 rounded-lg lg:hidden mt-1"
           />
         </div>
       </div>

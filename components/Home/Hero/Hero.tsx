@@ -25,7 +25,7 @@ const Hero = () => {
         preload="metadata"
         className="w-full h-full object-cover"
       />
-      <div className="absolute z-[100] w-full h-full  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+      <div className="absolute  w-full h-full  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
         <div className="flex items-center justify-center flex-col w-full h-full">
           <div data-aos="fade-up">
             <h1 className="text-[25px] mb-4 md:mb-0 text-center md:text-[35] lg:text-[45px] tracking-[0.7rem] text-white font-bold uppercase">
@@ -51,7 +51,6 @@ const Hero = () => {
             ></span>
             <span className="relative font-bold">Search</span>
           </Link>
-
           {isModalOpen && (
             <BaseModal
               onClose={() => setIsModalOpen(false)}
