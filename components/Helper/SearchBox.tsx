@@ -55,22 +55,12 @@ const SearchBox = ({ text, setText }: Props) => {
   const formatToBuddhistEra = (date: string): string => {
     return date ? dayjs(date).locale("th").format("DD MMMM BBBB") : "";
   };
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
   const updateCount = (
     setter: React.Dispatch<React.SetStateAction<number>>,
     value: number
   ) => {
     setter((prevCount: number) => Math.max(0, prevCount + value));
   };
-  const handleAdultChange = () => updateCount(setCountAdult, 1);
-  const handleAdultRemove = () => updateCount(setCountAdult, -1);
-  const handleRoomChange = () => updateCount(setCountRoom, 1);
-  const handleRoomRemove = () => updateCount(setCountRoom, -1);
-  const handleChildChange = () => updateCount(setCountChild, 1);
-  const handleChildRemove = () => updateCount(setCountChild, -1);
-
   const filterProvinces = (debouncedText: string) => {
     if (debouncedText) {
       const filtered = provinces
