@@ -107,3 +107,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+.parallax-video {
+  transform: translateY(0);
+  transition: transform 0.2s ease-out;
+}
+
+.parallax-video {
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .parallax-video {
+    transform: translateY(-30%); /* Adjust for smaller screens */
+  }
+}

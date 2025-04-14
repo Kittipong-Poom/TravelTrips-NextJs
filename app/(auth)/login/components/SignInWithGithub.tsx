@@ -16,7 +16,6 @@ const SignInWithGithub = () => {
       }}
     >
       <BaseIcon icon="Github" className="mr-2" />
-      Login with Github
     </Button>
   );
 };

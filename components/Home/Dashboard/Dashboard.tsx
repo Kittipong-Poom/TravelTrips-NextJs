@@ -11,7 +11,6 @@ import WorldMap from "@/components/Home/Dashboard/WorldMap/WorldMap";
 import City from "@/components/Home/Dashboard/City/City";
 import RecentTrips from "@/components/Home/Dashboard/RecentTrips/RecentTrips";
 import Housing from "@/components/Home/Dashboard/Housing/Housing";
-
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const loaderDashboard = async () => {

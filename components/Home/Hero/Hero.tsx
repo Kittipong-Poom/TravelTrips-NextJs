@@ -1,18 +1,26 @@
 import { useState } from "react";
 import SearchBox from "@/components/Helper/SearchBox";
 import BaseModal from "@/components/BaseModal/BaseModal";
-import Link from "next/link";
 import React from "react";
-
+import { useRouter } from "next/navigation";
 const Hero = () => {
   const [text, setText] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleSearchClick = (text: string) => {
-    if (!text.trim()) {
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
+  const [selectedNationalPark, setSelectedNationalPark] = useState<string>("");
+  const router = useRouter();
+  const handleSearchClick = () => {
+    if (!text.trim() && !selectedProvince && !selectedNationalPark) {
       setIsModalOpen(true);
-    } else {
-      setIsModalOpen(false);
+      return;
     }
+    const query = new URLSearchParams();
+    if (text) query.append("q", text);
+    if (selectedProvince) query.append("province", selectedProvince);
+    if (selectedNationalPark)
+      query.append("nationalPark", selectedNationalPark);
+
+    router.push(`/search/results?${query.toString()}`);
   };
   return (
     <div className="relative w-full h-[120vh] sm:h-[100vh]">
@@ -35,14 +43,17 @@ const Hero = () => {
               Discover breathtaking natural wonders across Thailand and beyond.
             </p>
           </div>
-          <SearchBox text={text} setText={setText} />
-          <Link
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleSearchClick(text);
-            }}
-            className="rounded px-14 md:px-28 -mt-4 py-2.5 overflow-hidden group bg-rose-600 relative hover:bg-gradient-to-r
+          <SearchBox
+            text={text}
+            setText={setText}
+            selectedProvince={selectedProvince}
+            setSelectedProvince={setSelectedProvince}
+            selectedNationalPark={selectedNationalPark}
+            setSelectedNationalPark={setSelectedNationalPark}
+          />
+          <div
+            onClick={handleSearchClick}
+            className="rounded cursor-pointer px-14 md:px-28 -mt-4 py-2.5 overflow-hidden group bg-rose-600 relative hover:bg-gradient-to-r
              hover:from-red-500 hover:to-red-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-red-400 transition-all ease-out duration-300"
           >
             <span
@@ -50,12 +61,12 @@ const Hero = () => {
             translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease:"
             ></span>
             <span className="relative font-bold">Search</span>
-          </Link>
+          </div>
           {isModalOpen && (
             <BaseModal
               onClose={() => setIsModalOpen(false)}
               open={isModalOpen}
-              title={"กรุณาใส่ชื่อที่ต้องการจะไปก่อน"}
+              title={"กรุณาใส่ข้อมูลอย่างน้อย 1 ช่องเพื่อค้นหา"}
               content={""}
               className="mt-[25%] text-center"
             />

@@ -4,15 +4,34 @@ import { useState } from "react";
 import { FaCcMastercard, FaCcVisa, FaCcPaypal } from "react-icons/fa6";
 import { FaCcJcb } from "react-icons/fa";
 import { BsQrCode } from "react-icons/bs";
+import emailjs from "@emailjs/browser";
+import { createClient } from "@/utils/supabase/client";
+import { Booking } from "@/types/Payment";
 
 const Payment = ({
   handleBack,
+  handleSuccess,
+  booking,
+  vat,
+  grandTotal,
+  price,
+  subtotal,
   timeLeft,
+  email,
+  DateLongEN,
   formatTime,
 }: {
   handleBack: () => void;
+  handleSuccess: () => void;
   timeLeft: number;
   formatTime: (seconds: number) => string;
+  booking: Booking;
+  vat: number;
+  price: number;
+  email: string;
+  DateLongEN: (date: Date) => string;
+  subtotal: number;
+  grandTotal: number;
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -22,7 +41,34 @@ const Payment = ({
   const [cardName, setCardName] = useState<string>("");
   const [expiryDate, setExpiryDate] = useState<string>("");
   const [cvv, setCvv] = useState<string>("");
+  const [cardErrors, setCardErrors] = useState<{
+    cardName?: string;
+    cardNumber?: string;
+    expiryDate?: string;
+    cvv?: string;
+  }>({
+    cardName: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+  });
 
+  const handleCompletePayment = () => {
+    const errors: {
+      cardName?: string;
+      cardNumber?: string;
+      expiryDate?: string;
+      cvv?: string;
+    } = {};
+    if (!cardName) errors.cardName = "Please enter name on card";
+    if (!cardNumber) errors.cardNumber = "Please enter card number";
+    if (!expiryDate) errors.expiryDate = "Please enter expiration date";
+    if (!cvv) errors.cvv = "Please enter CVV";
+    setCardErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      sendEmail();
+    }
+  };
   const paymentMethods = [
     {
       id: "visa",
@@ -40,7 +86,84 @@ const Payment = ({
       icon: <FaCcJcb size={40} className="text-blue-600" />,
     },
   ];
+  const formatExpiryDate = (value: string): string => {
+    let input = value.replace(/\D/g, "");
+    if (input.length > 4) input = input.slice(0, 4);
+    if (input.length > 2) {
+      return `${input.slice(0, 2)}/${input.slice(2)}`;
+    }
+    return input;
+  };
 
+  const formatCardNumber = (value: string): string => {
+    let input = value.replace(/\D/g, "");
+    if (input.length > 16) input = input.slice(0, 16);
+    if (input.length > 4) {
+      return `${input.slice(0, 4)} ${input.slice(4, 8)} ${input.slice(
+        8,
+        12
+      )} ${input.slice(12, 16)}`;
+    }
+    return input;
+  };
+  const CardCode = (value: string) => {
+    let input = value.replace(/\D/g, "");
+    if (input.length > 3) input = input.slice(0, 3);
+    return input;
+  };
+  const sendEmail = async () => {
+    const userEmail = email;
+    const maskedCard = cardNumber.replace(/\d{12}(\d{4})/, "**** **** **** $1");
+    const fullImageUrl = booking?.image.startsWith("http")
+      ? booking.image
+      : `https://travel-trips-ten.vercel.app/${booking?.image}`;
+    const templateParams = {
+      order_id: "ORD-" + new Date().getTime(),
+      to_email: userEmail,
+      replyto: email,
+      sendername: "TravelTrip noreply",
+      from_email: "noreply@yourdomain.com",
+      cost: {
+        vat: vat.toFixed(2),
+        subtotal: subtotal.toFixed(2),
+        total: grandTotal.toFixed(2),
+      },
+      orders: [
+        {
+          image_url: fullImageUrl,
+          name: booking?.name,
+          card_number: maskedCard,
+          payment_method: selectedPayment,
+          price: price.toFixed(2),
+          checkIn: DateLongEN(booking?.checkIn) || "N/A",
+          checkOut: DateLongEN(booking?.checkOut) || "N/A",
+        },
+      ],
+      hotel_details: {
+        name: booking?.name,
+        rating: booking?.rating,
+        checkIn: DateLongEN(booking?.checkIn) || "N/A",
+        checkOut: DateLongEN(booking?.checkOut) || "N/A",
+      },
+    };
+    emailjs
+      .send(
+        "service_vn7u9um",
+        "template_iwdwoc8",
+        templateParams,
+        "R5-PU5nVLE6bGHniG"
+      )
+      .then(
+        (result) => {
+          console.log("Email sent successfully:", result.text);
+          handleSuccess();
+        },
+        (error) => {
+          console.error("Failed to send email:", error);
+          alert("Error sending payment details. Please try again.");
+        }
+      );
+  };
   return (
     <div className="flex flex-col p-6">
       <div className="flex justify-between">
@@ -89,10 +212,14 @@ const Payment = ({
             ))}
           </div>
         </div>
-
         {/* Payment Form */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          <div>
+          <div className="mb-4">
+            {cardErrors.cardName && (
+              <span className="text-red-500 text-sm mb-1 block">
+                {cardErrors.cardName}
+              </span>
+            )}
             <label className="block text-sm font-medium">Name on card *</label>
             <input
               type="text"
@@ -103,30 +230,45 @@ const Payment = ({
             />
           </div>
 
-          <div>
+          <div className="mb-4">
+            {cardErrors.cardNumber && (
+              <span className="text-red-500 text-sm mb-1 block">
+                {cardErrors.cardNumber}
+              </span>
+            )}
             <label className="block text-sm font-medium">Card number *</label>
             <input
               type="text"
               placeholder="XXXX XXXX XXXX XXXX"
               className="border rounded-lg p-2 w-full mt-1"
               value={cardNumber}
-              onChange={(e) => setCardNumber(e.target.value)}
+              onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
             />
           </div>
 
-          <div>
+          <div className="mb-4">
+            {cardErrors.expiryDate && (
+              <span className="text-red-500 text-sm mb-1 block">
+                {cardErrors.expiryDate}
+              </span>
+            )}
             <label className="block text-sm font-medium">Expiration *</label>
             <input
               type="text"
               placeholder="MM / YY"
               className="border rounded-lg p-2 w-full mt-1"
               value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
+              onChange={(e) => setExpiryDate(formatExpiryDate(e.target.value))}
             />
           </div>
 
-          <div>
-            <label className=" text-sm font-medium flex justify-between">
+          <div className="mb-4">
+            {cardErrors.cvv && (
+              <span className="text-red-500 text-sm mb-1 block">
+                {cardErrors.cvv}
+              </span>
+            )}
+            <label className="text-sm font-medium flex justify-between">
               Card code *{" "}
             </label>
             <div className="flex items-center">
@@ -135,9 +277,8 @@ const Payment = ({
                 placeholder="XXX"
                 className="border rounded-lg p-2 w-48 mt-1"
                 value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
+                onChange={(e) => setCvv(CardCode(e.target.value))}
               />
-
               <span
                 className="text-green-500 hover:bg-green-200 p-3 rounded-lg transition-all duration-200  text-sm ml-3 cursor-pointer"
                 onClick={handleOpen}
@@ -150,8 +291,8 @@ const Payment = ({
         <BaseModal
           open={open}
           onClose={handleClose}
-          title="What is CVV?"
-          content="CVV (Card Verification Value) is a 3-digit code on the back of your card, used for security purposes."
+          title="Security code"
+          content="The security code is the 3 digits on the back of your card."
           imageSrc="/images/cvv.jpg"
         />
         {/* Save Card Option */}
@@ -163,13 +304,25 @@ const Payment = ({
         </div>
       </div>
 
-      <button
-        onClick={handleBack}
-        className="relative px-10 py-3.5 mt-5 rounded-lg overflow-hidden group bg-gradient-to-r from-gray-700 to-black  hover:bg-gradient-to-r hover:from-gray-600 hover:to-black text-white transition-all ease-out duration-300"
-      >
-        <span className="absolute right-0 w-10 h-full top-0 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 -skew-x-12 group-hover:-translate-x-36 ease"></span>
-        <span className="relative text-xl font-semibold">Back</span>
-      </button>
+      <div className="grid grid-cols-2 gap-4 mt-5">
+        <button
+          onClick={handleBack}
+          className="relative px-10 py-3.5 mt-5 rounded-lg overflow-hidden group bg-gradient-to-r from-gray-700 to-black  hover:bg-gradient-to-r hover:from-gray-600 hover:to-black text-white transition-all ease-out duration-300"
+        >
+          <span className="absolute right-0 w-10 h-full top-0 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 -skew-x-12 group-hover:-translate-x-36 ease"></span>
+          <span className="relative text-xl font-semibold">Back</span>
+        </button>
+
+        <button
+          onClick={handleCompletePayment}
+          className="relative px-10 py-3.5 mt-5 rounded-lg overflow-hidden group bg-gradient-to-r from-green-700 to-green-900 hover:bg-gradient-to-r hover:from-green-600 hover:to-green-800 text-white transition-all ease-out duration-300"
+        >
+          <span className="absolute right-0 w-10 h-full top-0 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 -skew-x-12 group-hover:-translate-x-36 ease"></span>
+          <span className="relative text-xl font-semibold">
+            Complete Payment
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

@@ -23,12 +23,23 @@ import { provinces } from "@/data/province";
 import { MdClear } from "react-icons/md";
 import { Button } from "../ui/button";
 
-type Props = {
+interface Props {
   text: string;
-  setText: (value: string) => void;
-};
+  setText: (text: string) => void;
+  selectedProvince: string;
+  setSelectedProvince: (province: string) => void;
+  selectedNationalPark: string;
+  setSelectedNationalPark: (park: string) => void;
+}
 dayjs.extend(buddhistEra);
-const SearchBox = ({ text, setText }: Props) => {
+const SearchBox = ({
+  text,
+  setText,
+  selectedProvince,
+  setSelectedProvince,
+  selectedNationalPark,
+  setSelectedNationalPark,
+}: Props) => {
   const [selectedStartDate, setSelectedDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -39,8 +50,6 @@ const SearchBox = ({ text, setText }: Props) => {
   const [countChild, setCountChild] = useState<number>(0);
   const [filteredNationalParks, setFilteredNationalParks] =
     useState(nationalParks);
-  const [selectedProvince, setSelectedProvince] = useState<string>("");
-  const [selectedNationalPark, setSelectedNationalPark] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedText] = useDebounce(text, 500);
   const handleDateChange =

@@ -16,7 +16,6 @@ const SignInWithGoogleButton = () => {
       }}
     >
       <BaseIcon icon="Google" className="mr-2" />
-      Login with Google
     </Button>
   );
 };

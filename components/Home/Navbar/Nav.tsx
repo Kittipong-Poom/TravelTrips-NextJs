@@ -3,11 +3,12 @@ import { usePathname } from "next/navigation";
 import { navLinks } from "@/constant/constant";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { HiBars3BottomRight } from "react-icons/hi2";
 import { GiBurningForest } from "react-icons/gi";
 import LoginButton from "@/components/UserLogin/LoginLogoutButton";
 import UserGreetText from "@/components/UserLogin/UserGreetText";
 import { User } from "@supabase/auth-js";
+import BaseIcon from "@/components/BaseIcons/BaseIcon";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   openNav: () => void;
@@ -78,7 +79,7 @@ const Nav = ({ openNav }: Props) => {
                 <UserGreetText user={user} />
               </div>
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 lg:w-full w-[300px] bg-white rounded-md shadow-lg z-50 py-2">
+                <div className="absolute right-0 mt-2 lg:w-[300px] w-[300px] bg-white rounded-md shadow-lg z-50 py-2">
                   <div className="px-4 py-2 flex">
                     <div className="text-sm">
                       Hello,{" "}
@@ -93,16 +94,24 @@ const Nav = ({ openNav }: Props) => {
                   <div className="px-4 py-2 border-t border-gray-100">
                     <LoginButton setUser={setUser} />
                   </div>
+                  <div className="px-4 py-2 border-t border-gray-100 text-center rounded-xl bg-black w-[271px]  ml-4 flex justify-center items-center">
+                    <Link className="text-white" href="/settings">
+                      Settings
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
           ) : (
             <LoginButton setUser={setUser} />
           )}
-          <HiBars3BottomRight
+
+          <Button
+            className="group flex lg:hidden ml-3 w-12 h-12  text-white items-center justify-center relative z-10 [transition:all_0.5s_ease] rounded-[0.375rem] p-[5px] cursor-pointer  border-[#999] outline-none focus-visible:outline-0"
             onClick={openNav}
-            className="w-8 h-8 cursor-pointer ml-2 text-black bg-white p-1 rounded-lg lg:hidden mt-1"
-          />
+          >
+            <BaseIcon icon="Hamburger" className="w-7 h-7" />
+          </Button>
         </div>
       </div>
     </div>
