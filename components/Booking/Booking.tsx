@@ -36,7 +36,7 @@ const Checkout = () => {
     address: "",
   });
   const handleFormSubmit = () => {
-    let formErrors = { ...errors };
+    const formErrors = { ...errors };
     formErrors.email = email ? "" : "Email is required.";
     formErrors.phoneNumber = phoneNumber ? "" : "Phone number is required.";
     formErrors.firstName = firstName ? "" : "First name is required.";

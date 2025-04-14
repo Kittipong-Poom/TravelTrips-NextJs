@@ -5,7 +5,6 @@ import { FaCcMastercard, FaCcVisa, FaCcPaypal } from "react-icons/fa6";
 import { FaCcJcb } from "react-icons/fa";
 import { BsQrCode } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
-import { createClient } from "@/utils/supabase/client";
 import { Booking } from "@/types/Payment";
 
 const Payment = ({
