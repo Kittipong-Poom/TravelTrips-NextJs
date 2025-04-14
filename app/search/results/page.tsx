@@ -1,10 +1,14 @@
 import Nature from "@/components/SearchNature/Nature";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
     <div>
-      <Nature />
+      <Suspense
+        fallback={<div className="pt-32 text-center">กำลังโหลดผลลัพธ์...</div>}
+      >
+        <Nature />
+      </Suspense>
     </div>
   );
 };
