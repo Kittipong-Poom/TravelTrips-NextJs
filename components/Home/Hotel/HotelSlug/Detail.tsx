@@ -11,7 +11,6 @@ import FullScreenImage from "@/components/FullScreenImage/FullScreenImage";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Button } from "@/components/ui/button";
 const HotelDetailPage = () => {
   const params = useParams();
   const hotelId = parseInt(params.hotelId as string, 10);
