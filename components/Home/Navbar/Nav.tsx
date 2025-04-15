@@ -9,7 +9,6 @@ import UserGreetText from "@/components/UserLogin/UserGreetText";
 import { User } from "@supabase/auth-js";
 import BaseIcon from "@/components/BaseIcons/BaseIcon";
 import { Button } from "@/components/ui/button";
-
 type Props = {
   openNav: () => void;
 };
@@ -28,7 +27,14 @@ const Nav = ({ openNav }: Props) => {
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
-
+  const scrollToTop = () => {
+    if (isHome) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <div
       className={`${
@@ -38,23 +44,35 @@ const Nav = ({ openNav }: Props) => {
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-col">
-            <GiBurningForest className="w-6 h-6 text-white" />
-          </div>
-          <h1
-            className={`text-xl md:text-2xl uppercase font-bold ${
-              isHome ? "text-white" : navBg ? "text-white" : "text-black"
-            }`}
+          <Link
+            href="/"
+            scroll={false}
+            className="flex items-center"
+            onClick={scrollToTop}
           >
-            NatureTrip
-          </h1>
+            <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-col mr-3">
+              <GiBurningForest className="w-6 h-6 text-white" />
+            </div>
+            <h1
+              className={`text-xl md:text-2xl uppercase font-bold ${
+                isHome ? "text-white" : navBg ? "text-white" : "text-black"
+              }`}
+            >
+              NatureTrip
+            </h1>
+          </Link>
         </div>
         <div className="hidden lg:flex items-center space-x-5">
-          {navLinks.map((link) => {
-            return (
-              <Link href={link.url} key={link.id}>
-                <p
-                  className={`relative text-base font-medium w-fit block 
+          {navLinks
+            .filter((link) => {
+              if (link.label === "Dashboard" && !user) return false;
+              return true;
+            })
+            .map((link) => {
+              return (
+                <Link href={link.url} key={link.id}>
+                  <p
+                    className={`relative text-base font-medium w-fit block 
                     after:block after:content-[''] after:absolute after:bottom-0 after:left-0 
                     after:h-[2px] after:w-full after:bg-green-500 after:scale-x-0 
                     after:transition-transform after:duration-300 after:origin-left 
@@ -65,12 +83,12 @@ const Nav = ({ openNav }: Props) => {
                         ? "text-white"
                         : "text-black"
                     }`}
-                >
-                  {link.label}
-                </p>
-              </Link>
-            );
-          })}
+                  >
+                    {link.label}
+                  </p>
+                </Link>
+              );
+            })}
         </div>
         <div className="flex flex-row lg:flex-row space-y-2 lg:space-y-0 lg:space-x-4 text-black">
           {user ? (
@@ -105,12 +123,11 @@ const Nav = ({ openNav }: Props) => {
           ) : (
             <LoginButton setUser={setUser} />
           )}
-
           <Button
             className="group flex lg:hidden ml-3 w-12 h-12  text-white items-center justify-center relative z-10 [transition:all_0.5s_ease] rounded-[0.375rem] p-[5px] cursor-pointer  border-[#999] outline-none focus-visible:outline-0"
             onClick={openNav}
           >
-            <BaseIcon icon="Hamburger" className="w-7 h-7" />
+            <BaseIcon icon="Hamburger" className="w-7 h-7 " />
           </Button>
         </div>
       </div>

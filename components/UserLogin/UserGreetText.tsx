@@ -8,7 +8,7 @@ const UserGreetText = ({ user }: UserGreetTextProps) => {
     user.user_metadata?.name || user.user_metadata?.login || "User";
   const avatarUrl = user.user_metadata?.avatar_url || "";
   return (
-    <div className="flex items-center gap-2 cursor-pointer backdrop:blur-sm p-2 rounded-md bg-gray-100 hover:bg-slate-200 transition-all duration-200 ease-in-out">
+    <div className="flex mt-[7px] items-center gap-2 cursor-pointer backdrop:blur-sm p-2 rounded-md bg-gray-100 hover:bg-slate-200 transition-all duration-200 ease-in-out">
       {avatarUrl ? (
         <Image
           src={avatarUrl}

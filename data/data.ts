@@ -1,4 +1,15 @@
-// Static Data
+import { MdCleaningServices, MdOutlineFreeBreakfast } from "react-icons/md";
+import {
+  FaParking,
+  FaConciergeBell,
+  FaSnowflake,
+  FaWifi,
+} from "react-icons/fa";
+import { IconType } from "react-icons";
+export interface Facility {
+  label: string;
+  icon: IconType;
+}
 
 export const destinationData = [
   {
@@ -59,7 +70,7 @@ export const hotelsData = [
     image: "/images/theyhouse.jpg",
     images: [
       "/images/theyhouse.jpg",
-      "/images/theyhouse2.jfif",
+      "/images/theyhouse2.png",
       "/images/theyhouse3.jpg",
       "/images/they4.jpg",
     ],
@@ -80,11 +91,64 @@ export const hotelsData = [
       "Complimentary Wi-Fi & parking",
     ],
     availableFacilities: [
-      "24/7 Reception",
-      "Room Service",
-      "Free Parking",
-      "Air-conditioning",
-      "Free Breakfast",
+      {
+        label: "24/7 Reception",
+        icon: FaConciergeBell,
+      },
+      {
+        label: "Room Service",
+        icon: MdCleaningServices,
+      },
+      {
+        label: "Free Parking",
+        icon: FaParking,
+      },
+      {
+        label: "Air-conditioning",
+        icon: FaSnowflake,
+      },
+      {
+        label: "Free Breakfast",
+        icon: MdOutlineFreeBreakfast,
+      },
+      {
+        label: "Free WiFi",
+        icon: FaWifi,
+      },
+    ] as Facility[],
+    nearbyPlaces: [
+      {
+        name: "Chichi & Chacha",
+        distance: "450 ม.",
+      },
+      {
+        name: "Mae Kuang Dam",
+        distance: "1.4 กม.",
+      },
+      { name: "Sri Lanna National Park", distance: "1.7 กม." },
+      { name: "สะพานนครพิงค์", distance: "2.3 กม." },
+      { name: "Playground Varee School", distance: "2.5 กม." },
+      { name: "สะพานนวรัฐ", distance: "2.9 กม." },
+      { name: "สะพานเหล็ก", distance: "3.2 กม." },
+      { name: "ประตูท่าแพ", distance: "3.4 กม." },
+      { name: "Latins", distance: "3.7 กม." },
+      { name: "ประตูช้างเผือก", distance: "3.9 กม." },
+      { name: "หอศิลปวัฒนธรรม", distance: "4.1 กม." },
+      { name: "อนุสาวรีย์สามกษัตริย์", distance: "4.1 กม." },
+      { name: "ประตูเชียงใหม่", distance: "4.4 กม." },
+      { name: "Art in Paradise Chiang Mai", distance: "4.5 กม." },
+      { name: "ประตูสวนดอก", distance: "5 กม." },
+      { name: "สวนสาธารณะหนองบวกหาด", distance: "5 กม." },
+      { name: "พิพิธภัณฑ์แมลงโลกฯ", distance: "6 กม." },
+      { name: "เวียงกุมกาม", distance: "9 กม." },
+    ],
+    cafesAndRestaurants: [
+      {
+        name: "Coffee Bar",
+        distance: "50 ม.",
+      },
+      { name: "Doi Pui Coffee", distance: "150 ม." },
+      { name: "Kaikah Cafe", distance: "450 ม." },
     ],
   },
   {

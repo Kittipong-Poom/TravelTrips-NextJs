@@ -11,7 +11,7 @@ interface MapProps {
     lng: number;
   };
 }
-export default function Map({ location }: MapProps) {
+const Map = ({ location }: MapProps) => {
   const defaultLocation = {
     lat: 18.5888,
     lng: 98.487,
@@ -26,4 +26,5 @@ export default function Map({ location }: MapProps) {
       </GoogleMap>
     </LoadScript>
   );
-}
+};
+export default Map;

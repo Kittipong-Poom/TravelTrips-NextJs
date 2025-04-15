@@ -7,10 +7,11 @@ import { hotelsData } from "@/data/data";
 import BaseIcon from "@/components/BaseIcons/BaseIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import FullScreenImage from "@/components/FullScreenImage/FullScreenImage";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import FullScreenImage from "@/components/FullScreenImage/FullScreenImage";
+import { Button } from "@/components/ui/button";
 const HotelDetailPage = () => {
   const params = useParams();
   const hotelId = parseInt(params.hotelId as string, 10);
@@ -111,15 +112,62 @@ const HotelDetailPage = () => {
                 Facilities
               </h3>
               <ul className="mt-2 text-gray-600 list-disc pl-4 space-y-2">
-                {(hotel.availableFacilities ?? []).map((facility, index) => (
-                  <li key={index}>{facility}</li>
-                ))}
+                {(hotel.availableFacilities ?? []).map((facility, index) => {
+                  if (
+                    typeof facility === "object" &&
+                    "label" in facility &&
+                    "icon" in facility
+                  ) {
+                    const { icon: Icon, label } = facility;
+                    return (
+                      <li key={index} className="flex items-center gap-2">
+                        <Icon className="text-xl text-green-500" />
+                        {label}
+                      </li>
+                    );
+                  }
+                  return <li key={index}>{facility}</li>;
+                })}
               </ul>
             </div>
           </div>
         </div>
+        {hotel && hotel.nearbyPlaces && hotel.nearbyPlaces.length > 0 && (
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 px-8 pb-8">
+            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-2xl font-bold text-center text-gray-800">
+                Nearby Attractions
+              </h3>
+              <ul className="mt-2 text-gray-600 list-disc pl-4 space-y-2">
+                {(hotel.nearbyPlaces ?? []).map((place, index) => (
+                  <div key={index} className="flex justify-between">
+                    {place.name}{" "}
+                    <span className="text-sm text-gray-500 ">
+                      {place.distance}
+                    </span>
+                  </div>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-2xl font-bold text-center text-gray-800">
+                Cafés & Restaurants
+              </h3>
+              <ul className="mt-2 text-gray-600 list-disc pl-4 space-y-2">
+                {(hotel.cafesAndRestaurants ?? []).map((cafe, index) => (
+                  <div key={index} className="flex justify-between">
+                    {cafe.name}{" "}
+                    <span className="text-sm text-gray-500 ">
+                      {cafe.distance}
+                    </span>
+                  </div>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
         {/* Back Button */}
-        <div className="p-6 flex items-center ">
+        <div className="p-6 flex items-center justify-between">
           <Link href="/" className="translate-x-3 cursor-pointer">
             <button
               className="bg-gray-100  text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"

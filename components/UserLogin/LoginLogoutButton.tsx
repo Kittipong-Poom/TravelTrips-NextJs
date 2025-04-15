@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { signout } from "@/lib/auth-actions";
 import { User } from "@supabase/auth-js";
@@ -12,6 +12,7 @@ const LoginButton = ({
 }) => {
   const [user, setLocalUser] = useState<User | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
   const supabase = createClient();
 
   useEffect(() => {
@@ -25,6 +26,9 @@ const LoginButton = ({
     fetchUser();
   }, [setUser]);
 
+  if (pathname === "/login") {
+    return null;
+  }
   if (user) {
     return (
       <Button
