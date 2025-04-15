@@ -8,6 +8,8 @@ import AOS from "aos";
 import RatingComponent from "@/components/Rating/RatingComponent";
 import FullScreenImage from "@/components/FullScreenImage/FullScreenImage";
 import GoogleMap from "@/components/GoogleMap/GoogleMap";
+import { FaFacebookSquare, FaLine, FaPhoneAlt } from "react-icons/fa";
+
 const ParkDetail = () => {
   const params = useParams();
   const { searchId } = params;
@@ -63,7 +65,7 @@ const ParkDetail = () => {
           <div
             className="absolute w-full h-full bg-fixed bg-center bg-cover"
             style={{
-              backgroundImage: `url(${park.imageUrl || "/images/default.jpg"})`,
+              backgroundImage: `url(${park.imageUrl})`,
             }}
           />
         )}
@@ -89,13 +91,26 @@ const ParkDetail = () => {
             <p>
               <strong>จังหวัด:</strong> {park.province}
             </p>
-            <p>
-              <strong>ค่าธรรมเนียม:</strong> {park.fee ?? "ไม่มีข้อมูล"} บาท
-            </p>
-            <p>
-              <strong>เส้นทางเดินป่า:</strong>{" "}
-              {park.trails?.join(", ") || "ไม่มีข้อมูล"}
-            </p>
+            {park.highlight && (
+              <p>
+                <strong>จุดเด่น:</strong> {park.highlight}
+              </p>
+            )}
+            {park.seasonalInfo && (
+              <p>
+                <strong>ฤดูท่องเที่ยว:</strong> {park.seasonalInfo}
+              </p>
+            )}
+            {park.fee && (
+              <p>
+                <strong>ค่าธรรมเนียม:</strong> {park.fee} บาท
+              </p>
+            )}
+            {park.trails && park.trails.length > 0 && (
+              <p>
+                <strong>เส้นทางเดินป่า:</strong> {park.trails.join(", ")}
+              </p>
+            )}
             <div className="flex items-center">
               Rating : <RatingComponent rating={park.rating ?? 0} />
             </div>
@@ -162,7 +177,90 @@ const ParkDetail = () => {
             </div>
           )}
         </section>
-        {/* REVIEWS SECTION */}
+        {park.accommodations && park.accommodations.length > 0 && (
+          <section data-aos="fade-up">
+            <h2 className="text-3xl font-bold text-green-700 mb-4">
+              ที่พักใกล้อุทยาน
+            </h2>
+            <div className="space-y-6">
+              {park.accommodations.map((acc, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                >
+                  {acc.imageUrl && (
+                    <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                      {(Array.isArray(acc.imageUrl)
+                        ? acc.imageUrl
+                        : [acc.imageUrl]
+                      ).map((img, i) => (
+                        <div
+                          key={i}
+                          className="overflow-hidden rounded-xl cursor-pointer"
+                        >
+                          <Image
+                            src={img}
+                            alt={`${acc.name} ${i + 1}`}
+                            width={800}
+                            height={500}
+                            onClick={() => openModal(img)}
+                            className="w-full h-48 object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+                    🛏️ {acc.name}
+                  </h3>
+                  <p className="text-gray-600 mb-2">{acc.description}</p>
+                  <p className="text-sm text-gray-500">📍 {acc.location}</p>
+                  {acc.contact && (
+                    <div className="mt-2 text-sm text-blue-600 space-y-1">
+                      {acc.contact.phone && (
+                        <p className="flex items-center text-lg">
+                          <FaPhoneAlt className="h-8 w-8 mr-3" /> โทร:{" "}
+                          {acc.contact.phone}
+                        </p>
+                      )}
+                      {acc.contact.line && (
+                        <p className="flex items-center text-lg">
+                          <FaLine className="h-8 w-8 mr-3 text-green-500" />
+                          <span className="mr-1">:</span>
+                          <a
+                            href={`https://line.me/R/ti/p/~${acc.contact.line.replace(
+                              "@",
+                              ""
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline hover:text-blue-800"
+                          >
+                            {acc.contact.line}
+                          </a>
+                        </p>
+                      )}
+                      {acc.contact.facebook && (
+                        <p className="flex items-center text-lg">
+                          <FaFacebookSquare className="h-8 w-8 mr-3" />
+                          Facebook : {""}
+                          <a
+                            href={acc.contact.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline hover:text-blue-800"
+                          >
+                            {acc.contact.facebook}
+                          </a>
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
         <section data-aos="fade-up">
           <h2 className="text-3xl font-bold text-green-700 mb-4">
             รีวิวจากนักท่องเที่ยว

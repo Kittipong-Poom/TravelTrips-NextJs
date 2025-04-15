@@ -47,7 +47,7 @@ const SearchResults = () => {
   }, [q, province, nationalPark]);
 
   return (
-    <div className="min-h-screen pt-32 px-6 bg-gray-50">
+    <div className="min-h-screen pt-32 px-6 bg-gray-50 ">
       {results.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.map((p) => (
@@ -60,7 +60,7 @@ const SearchResults = () => {
                 alt={p.name}
                 width={500}
                 height={500}
-                className="w-full h-40 object-cover rounded mb-3"
+                className="w-full h-60 object-cover rounded mb-3"
               />
               <h2 className="text-xl font-bold text-green-800 mb-1">
                 🌳 {p.name}

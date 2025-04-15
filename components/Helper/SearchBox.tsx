@@ -228,7 +228,7 @@ const SearchBox = ({
         )}
       </div>
       {/* 2nd search input */}
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 border-gray-400 border p-3 rounded-lg shadow-lg ">
         <div className="flex items-center space-x-6">
           <FaCalendarWeek className="w-6 h-6 text-green-600" />
           <div>
@@ -268,7 +268,7 @@ const SearchBox = ({
       {/* 4th search input */}
 
       <Drawer open={isOpen} onOpenChange={setIsOpen}>
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-6 border-gray-400 border p-3 rounded-lg shadow-lg ">
           <FaUserGroup className="w-6 h-6 text-green-600" />
           <DrawerTrigger asChild>
             <div className="p-1 border-green-300 w-full rounded-lg relative cursor-pointer">
