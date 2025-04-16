@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { FaHeart } from "react-icons/fa";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,6 +7,7 @@ import { FaHotel } from "react-icons/fa6";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
+
 type Props = {
   hotel: {
     id: number;
@@ -19,10 +20,12 @@ type Props = {
     hotelId: number;
   };
 };
+
 const HotelCard = ({ hotel }: Props) => {
   const [likeCount, setLikeCount] = useState<number>(0);
   const [showHeart, setShowHeart] = useState<{ id: number; y: number }[]>([]);
   const [reviews, setReviews] = useState(hotel.reviews);
+
   const handleLike = () => {
     setLikeCount((prev) => prev + 1);
     setShowHeart((prevHearts) => [
@@ -38,17 +41,11 @@ const HotelCard = ({ hotel }: Props) => {
       className: "text-black",
     });
   };
-  const randomReviews = () => {
+  useEffect(() => {
     const interval = setInterval(() => {
-      setReviews(getRandomReviews().toString());
+      setReviews(Math.floor(Math.random() * (20000 - 1 + 1) + 1).toString());
     }, 3000);
     return () => clearInterval(interval);
-  };
-  const getRandomReviews = () => {
-    return Math.floor(Math.random() * (20000 - 1 + 1) + 1);
-  };
-  useEffect(() => {
-    randomReviews();
   }, []);
   return (
     <div>

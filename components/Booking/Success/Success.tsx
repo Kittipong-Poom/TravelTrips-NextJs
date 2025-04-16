@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 const PaymentSuccess = () => {
   const router = useRouter();
   useEffect(() => {
-    setTimeout(() => router.push("/"), 5000);
-  }, []);
-
+    const timeout = setTimeout(() => router.push("/"), 5000);
+    return () => clearTimeout(timeout);
+  }, [router]);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-100 to-green-300">
       <motion.div
