@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { nationalParks } from "@/data/nationalPark";
 import Image from "next/image";
+import RatingComponent from "../Rating/RatingComponent";
+import { motion } from "framer-motion";
 
 type NationalPark = {
   id: number;
@@ -47,45 +49,57 @@ const SearchResults = () => {
   }, [q, province, nationalPark]);
 
   return (
-    <div className="min-h-screen pt-32 px-6 bg-gray-50 ">
+    <div className="min-h-screen pt-32 px-6 bg-gradient-to-r from-blue-50 to-gray-50">
       {results.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {results.map((p) => (
             <div
               key={p.id}
-              className="border rounded-lg p-4 shadow hover:shadow-lg transition bg-white"
+              className="relative group border rounded-xl overflow-hidden shadow-md bg-white hover:shadow-lg transition-transform transform hover:-translate-y-2"
             >
-              <Image
-                src={p.imageUrl ?? "/"}
-                alt={p.name}
-                width={500}
-                height={500}
-                className="w-full h-60 object-cover rounded mb-3"
-              />
-              <h2 className="text-xl font-bold text-green-800 mb-1">
-                🌳 {p.name}
-              </h2>
-              <p className="text-gray-600 text-sm">จังหวัด: {p.province}</p>
-
-              <div className="text-sm text-gray-500 mt-2 space-y-1">
-                <p>ค่าธรรมเนียม: {p.fee ?? "ไม่มีข้อมูล"} บาท</p>
-                <p>เส้นทางเดินป่า: {p.trails?.length ?? 0} เส้นทาง</p>
+              <div className="relative overflow-hidden">
+                <Image
+                  src={p.imageUrl ?? "/"}
+                  alt={p.name}
+                  width={500}
+                  height={500}
+                  className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {p.isPopular && (
+                  <span className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                    แนะนำ
+                  </span>
+                )}
               </div>
-
-              <div className="flex items-center justify-between mt-3">
-                <div className="flex items-center gap-2 text-yellow-500">
-                  <span>⭐️ {p.rating ?? 0}</span>
-                  {p.isPopular && (
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                      แนะนำ
-                    </span>
-                  )}
+              <div className="p-5 space-y-3">
+                <h2 className="text-2xl font-bold text-green-800 truncate">
+                  🌳 {p.name}
+                </h2>
+                <p className="text-sm text-gray-600">จังหวัด: {p.province}</p>
+                <div className="text-sm text-gray-500">
+                  <p>ค่าธรรมเนียม: {p.fee ?? "ไม่มีข้อมูล"} บาท</p>
+                  <p>เส้นทางเดินป่า: {p.trails?.length ?? 0} เส้นทาง</p>
                 </div>
-                <Link href={`/search/${p.id}?query=${p.name}`}>
-                  <button className="text-sm text-white bg-blue-500 px-3 py-1 rounded hover:bg-blue-600">
-                    ดูรายละเอียด
-                  </button>
-                </Link>
+                <div className="flex items-center justify-between mt-4">
+                  <div className="flex items-center text-yellow-500 space-x-2">
+                    <span className="text-base font-semibold flex w-[150px] items-center">
+                      <RatingComponent rating={p.rating ?? 0} /> {p.rating ?? 0}
+                    </span>
+                  </div>
+                  <Link href={`/search/${p.id}?query=${p.name}`}>
+                    <motion.button
+                      whileHover={{
+                        scale: 1.1,
+                        boxShadow: "0px 8px 20px rgba(62, 170, 71)",
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      className="relative text-sm bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-2 rounded-full shadow-lg overflow-hidden"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-green-500 via-green-600 to-green-700 opacity-0 group-hover:opacity-100 transition duration-500"></span>
+                      <span className="relative z-10">ดูรายละเอียด</span>
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const ConditionalFooter = () => {
   const pathname = usePathname();
-  const hideFooterPaths = ["/successPayment", "/logout"];
+  const hideFooterPaths = ["/successPayment", "/logout", "/settings", "/login"];
 
   if (hideFooterPaths.includes(pathname)) {
     return null;

@@ -111,8 +111,12 @@ const ParkDetail = () => {
                 <strong>เส้นทางเดินป่า:</strong> {park.trails.join(", ")}
               </p>
             )}
-            <div className="flex items-center">
-              Rating : <RatingComponent rating={park.rating ?? 0} />
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 w-[200px]">
+                <span className="font-semibold">Rating:</span>
+                <RatingComponent rating={park.rating ?? 0} />
+              </div>
+              <span className="text-gray-600">{park.rating ?? 0}</span>
             </div>
 
             {park.isPopular && (
@@ -241,18 +245,18 @@ const ParkDetail = () => {
                         </p>
                       )}
                       {acc.contact.facebook && (
-                        <p className="flex items-center text-lg">
+                        <div className="flex items-center text-lg">
                           <FaFacebookSquare className="h-8 w-8 mr-3" />
-                          Facebook : {""}
+                          Facebook :
                           <a
                             href={acc.contact.facebook}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="underline hover:text-blue-800"
+                            className="underline hover:text-blue-800 truncate max-w-full sm:max-w-[75%] md:max-w-[50%]"
                           >
                             {acc.contact.facebook}
                           </a>
-                        </p>
+                        </div>
                       )}
                     </div>
                   )}

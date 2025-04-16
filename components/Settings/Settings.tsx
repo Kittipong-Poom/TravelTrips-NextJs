@@ -110,11 +110,18 @@ const SettingsComponent = () => {
 
         {/* Avatar Section */}
         <div className="flex items-center space-x-4">
-          <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-200 text-lg font-medium">
-            {fullName
-              ?.split(" ")
-              .map((n: string) => n[0])
-              .join("")}
+          <div className="w-14 h-14 flex items-center justify-center rounded-full  text-lg font-medium">
+            {avatarUrl && (
+              <div className=" flex justify-center">
+                <Image
+                  src={avatarUrl}
+                  alt="Avatar Preview"
+                  width={80}
+                  height={80}
+                  className="rounded-full border"
+                />
+              </div>
+            )}
           </div>
           <div>
             <span className="mb-2 block">Profile Photo</span>
@@ -179,20 +186,6 @@ const SettingsComponent = () => {
             </Button>
           </div>
         </div>
-
-        {/* Avatar Preview */}
-        {avatarUrl && (
-          <div className="mt-4 flex justify-center">
-            <Image
-              src={avatarUrl}
-              alt="Avatar Preview"
-              width={80}
-              height={80}
-              className="rounded-full border"
-            />
-          </div>
-        )}
-
         {/* Save Button */}
         <Button
           onClick={handleUpdateProfile}
