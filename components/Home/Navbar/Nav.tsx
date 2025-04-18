@@ -1,5 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 import { navLinks } from "@/constant/constant";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -14,11 +15,12 @@ import { Button } from "@/components/ui/button";
 import Notification from "@/components/Notification/Notification";
 type Props = {
   openNav: () => void;
+  user: User | null;
+  setUser: Dispatch<SetStateAction<User | null>>;
 };
 
-const Nav = ({ openNav }: Props) => {
+const Nav = ({ openNav, user, setUser }: Props) => {
   const [navBg, setNavBg] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [hasNotified, setHasNotified] = useState<boolean>(false);
   const pathname = usePathname();
@@ -59,7 +61,9 @@ const Nav = ({ openNav }: Props) => {
   return (
     <div
       className={`${
-        navBg ? "bg-gray-900 shadow-md text-white" : "bg-transparent text-black"
+        navBg
+          ? "bg-gray-900 shadow-md text-white"
+          : "lg:bg-transparent lg:text-black bg-gray-900 text-white"
       } transition-all duration-200 h-[12vh] z-[1000] fixed w-full`}
     >
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
@@ -147,7 +151,9 @@ const Nav = ({ openNav }: Props) => {
                 )}
               </div>
             ) : (
-              <LoginButton setUser={setUser} />
+              <div className="mt-3 lg:mt-2">
+                <LoginButton setUser={setUser} />
+              </div>
             )}
             <Button
               className="group flex lg:hidden ml-3 w-12 h-12  text-white items-center justify-center relative z-10 [transition:all_0.5s_ease] rounded-[0.375rem] p-[5px] cursor-pointer  border-[#999] outline-none focus-visible:outline-0"
