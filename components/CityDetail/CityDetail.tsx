@@ -15,10 +15,11 @@ const CityDetail = () => {
 
   if (!city) return <NotFound />;
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1300);
-  });
+    return () => clearTimeout(timer);
+  }, [cityId]);
   return (
     <div className="bg-gray-100 min-h-screen p-6 pt-28">
       <div className=" max-w-[1800px]">
