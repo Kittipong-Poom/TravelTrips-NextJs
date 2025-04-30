@@ -38,7 +38,7 @@ const Transport = () => {
           <div className="flex items-center w-24 justify-center">
             <p
               className={`text-xs px-2 py-1 rounded ml-6 ${
-                data.status === "Paid" ? "bg-green-200" : "bg-red-200"
+                data.status === "จ่ายแล้ว" ? "bg-green-200" : "bg-red-200"
               }`}
             >
               {data.status}

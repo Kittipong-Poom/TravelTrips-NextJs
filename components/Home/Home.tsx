@@ -21,7 +21,7 @@ const Home = () => {
       const timer = setTimeout(() => {
         setLoading(false);
         sessionStorage.setItem("hasVisitedHome", "true");
-      }, 3200);
+      }, 2200);
       return () => clearTimeout(timer);
     }
   };
@@ -44,12 +44,24 @@ const Home = () => {
         <LinearProgressCountUp />
       ) : (
         <>
-          <Hero />
-          <Destination />
-          <Hotel />
-          <WhyChoose />
-          <Review />
-          <News />
+          <section id="hero">
+            <Hero />
+          </section>
+          <section id="destination">
+            <Destination />
+          </section>
+          <section id="hotel">
+            <Hotel />
+          </section>
+          <section id="why-choose">
+            <WhyChoose />
+          </section>
+          <section id="review">
+            <Review />
+          </section>
+          <section id="news">
+            <News />
+          </section>
         </>
       )}
     </div>

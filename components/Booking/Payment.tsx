@@ -17,7 +17,7 @@ const Payment = ({
   subtotal,
   timeLeft,
   email,
-  DateLongEN,
+  DateLongTH,
   formatTime,
 }: {
   handleBack: () => void;
@@ -28,7 +28,7 @@ const Payment = ({
   vat: number;
   price: number;
   email: string;
-  DateLongEN: (date: Date) => string;
+  DateLongTH: (date: Date) => string;
   subtotal: number;
   grandTotal: number;
 }) => {
@@ -134,15 +134,15 @@ const Payment = ({
           card_number: maskedCard,
           payment_method: selectedPayment,
           price: price.toFixed(2),
-          checkIn: DateLongEN(booking?.checkIn) || "N/A",
-          checkOut: DateLongEN(booking?.checkOut) || "N/A",
+          checkIn: DateLongTH(booking?.checkIn) || "N/A",
+          checkOut: DateLongTH(booking?.checkOut) || "N/A",
         },
       ],
       hotel_details: {
         name: booking?.name,
         rating: booking?.rating,
-        checkIn: DateLongEN(booking?.checkIn) || "N/A",
-        checkOut: DateLongEN(booking?.checkOut) || "N/A",
+        checkIn: DateLongTH(booking?.checkIn) || "N/A",
+        checkOut: DateLongTH(booking?.checkOut) || "N/A",
       },
     };
     emailjs
@@ -167,7 +167,7 @@ const Payment = ({
     <div className="flex flex-col p-6">
       <div className="flex justify-between">
         <h2 className="text-2xl text-left font-semibold mb-4 ">
-          Payment Methods
+          ช่องทางการชำระเงิน
         </h2>
         <span>{formatTime(timeLeft)}</span>
       </div>

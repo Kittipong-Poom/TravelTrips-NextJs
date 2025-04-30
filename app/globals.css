@@ -122,3 +122,7 @@
     transform: translateY(-30%); /* Adjust for smaller screens */
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}

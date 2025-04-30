@@ -2,38 +2,37 @@ export const Cities = [
   {
     id: 1,
     cityId: 1,
-    name: "Chiang Mai",
-    nameCity: "Kew Mae Pan",
+    name: "เชียงใหม่",
+    nameCity: "กิ่วแม่ปาน",
     image: "/images/city/city2.jpg",
     video: "/videos/maepan.mp4",
     count: 15,
     highlights: [
-      "Kew Mae Pan Trail",
-      "Doi innthanon",
-      "Doi Luang Chiang Dao",
-      "Mae Kampong",
-      "Mae Tia Waterfall",
+      "เส้นทางเดินป่า กิ่วแม่ปาน",
+      "ดอยอินทนนท์",
+      "ดอยหลวงเชียงดาว",
+      "แม่กำปอง",
+      "น้ำตกแม่เตี้ย",
     ],
     reviews: [
       {
         id: 1,
-        name: "Suthida Chaiyasit",
+        name: "สุธิดา ชัยยศิต",
         review:
-          "The Kew Mae Pan trail was breathtaking, especially during sunrise. Totally worth the hike!",
+          "เส้นทางเคว Mae Pan สวยงามมาก โดยเฉพาะในช่วงพระอาทิตย์ขึ้น คุ้มค่ากับการเดินทางจริงๆ!",
         rating: 4.9,
       },
       {
         id: 2,
-        name: "Anan Phromma",
-        review:
-          "Doi Inthanon is amazing! Cool weather and stunning views all year round.",
+        name: "อนันต์ พรหมมา",
+        review: "ดอยอินทนนท์เยี่ยมมาก! อากาศเย็นสบายและวิวที่สวยงามตลอดทั้งปี",
         rating: 4.8,
       },
       {
         id: 3,
-        name: "Kamonwan Lertchai",
+        name: "กมลวรรณ เลิศชัย",
         review:
-          "Loved visiting the Elephant Nature Park. It’s a heartwarming and ethical experience.",
+          "ชอบไปเยือน Elephant Nature Park มันเป็นประสบการณ์ที่อบอุ่นและมีจริยธรรมจริงๆ",
         rating: 5.0,
       },
     ],
@@ -41,39 +40,39 @@ export const Cities = [
   {
     id: 2,
     cityId: 2,
-    name: "Chiang Rai",
+    name: "เชียงราย",
     image: "/images/city/city1.jpg",
     video: "/videos/chaingrai.mp4",
     count: 21,
     highlights: [
-      "Phu Chi Fa",
-      "Doi Tung",
-      "Tham Luang Cave",
-      "Singha Park",
-      "Khun Korn Waterfall",
-      "Doi Chang Chaing Rai",
-      "Wat Rong Khun",
+      "ภูชี้ฟ้า",
+      "ดอยตุง",
+      "ถ้ำหลวง",
+      "สวนสิงห์",
+      "น้ำตกขุนกรณ์",
+      "ดอยช้างเชียงราย",
+      "วัดร่องขุ่น",
     ],
     reviews: [
       {
         id: 1,
-        name: "Nattapong Meesuk",
+        name: "ณัฐพงศ์ มีสุข",
         review:
-          "Phu Chi Fa in the early morning is magical. The sea of mist and mountains is unforgettable.",
+          "ภูชี้ฟ้าในช่วงเช้ามืดมีมนต์ขลัง ม่านหมอกและภูเขาไม่อาจลืมได้เลย",
         rating: 5.0,
       },
       {
         id: 2,
-        name: "Siriporn Wongchai",
+        name: "ศิริพร วงค์ชัย",
         review:
-          "Doi Tung has a beautiful garden and peaceful atmosphere. Great for a relaxing day trip.",
+          "ดอยตุงมีสวนที่สวยงามและบรรยากาศที่เงียบสงบ เหมาะสำหรับการไปเที่ยวแบบพักผ่อน",
         rating: 4.7,
       },
       {
         id: 3,
-        name: "Tanin Ruangchai",
+        name: "ธนินท์ ร่วมชัย",
         review:
-          "Tham Luang Cave was both beautiful and meaningful. The story behind it adds depth to the visit.",
+          "ถ้ำหลวงสวยงามและมีความหมาย เรื่องราวที่อยู่เบื้องหลังทำให้การเยี่ยมชมมีความลึกซึ้ง",
         rating: 4.8,
       },
     ],
@@ -81,36 +80,36 @@ export const Cities = [
   {
     id: 3,
     cityId: 3,
-    name: "Chiang Dao",
+    name: "เชียงดาว",
     image: "/images/city/city3.jpg",
     video: "/videos/chaingdao.mp4",
     count: 52,
     highlights: [
-      "Doi Chiang Dao",
-      "Chiang Dao Cave",
-      "บ้านธารชีวี Tarnchevee House",
-      "Baan Lee Soo Homestay",
+      "ดอยเชียงดาว",
+      "ถ้ำเชียงดาว",
+      "บ้านธารชีวี",
+      "บ้านลีซูโฮมสเตย์",
     ],
     reviews: [
       {
         id: 1,
-        name: "Piyachat Sriwong",
+        name: "พยาชาต ศรีวงศ์",
         review:
-          "The view from Doi Chiang Dao was absolutely stunning. The sea of mist in the morning is unforgettable!",
+          "วิวจากดอยเชียงดาวสวยงามมากๆ ม่านหมอกในตอนเช้าเป็นสิ่งที่ไม่อาจลืมได้!",
         rating: 4.8,
       },
       {
         id: 2,
-        name: "Thanakorn Wannasilp",
+        name: "ธนกร วรรณศิลป์",
         review:
-          "Chiang Dao Cave is truly impressive. The rock formations are incredible and it's a great place to explore with a local guide.",
+          "ถ้ำเชียงดาวน่าประทับใจจริงๆ การก่อตัวของหินนั้นมหัศจรรย์ และมันเป็นสถานที่ที่เหมาะกับการสำรวจร่วมกับไกด์ท้องถิ่น",
         rating: 5.0,
       },
       {
         id: 3,
-        name: "Nalinee Boontham",
+        name: "นลินี บุญธรรม",
         review:
-          "Tarnchevee House National Park is peaceful and full of natural beauty. Ideal for hiking and enjoying quiet trails.",
+          "อุทยานบ้านธารชีวีเงียบสงบและเต็มไปด้วยความงามธรรมชาติ เหมาะสำหรับการเดินป่าและเพลิดเพลินไปกับเส้นทางเงียบสงบ",
         rating: 4.7,
       },
     ],
@@ -118,37 +117,37 @@ export const Cities = [
   {
     id: 4,
     cityId: 4,
-    name: "Pha Hi",
+    name: "ผาฮี้",
     image: "/images/city/city4.jpg",
     video: "/videos/phahi.mp4",
     count: 12,
     highlights: [
-      "Pha Hi Viewpoint",
-      "Phu Kuma Cafe and Homestay",
-      "Pha hi Valley",
-      "Grandfather Life Museum",
+      "จุดชมวิวผาฮี้",
+      "คาเฟ่และโฮมสเตย์ผาฮี้",
+      "หุบเขาผาฮี้",
+      "พิพิธภัณฑ์ชีวิตคุณปู่",
       "สวนคุณปู่ Life Museum",
     ],
     reviews: [
       {
         id: 1,
-        name: "Patcharaporn Yimyam",
+        name: "พัชราภรณ์ ยิ้มยาม",
         review:
-          "The view at Pha Hi Viewpoint is stunning—perfect spot for sunrise lovers!",
+          "วิวที่จุดชมวิวผาฮี้สวยงามมาก—เป็นสถานที่ที่เหมาะสำหรับคนรักการชมพระอาทิตย์ขึ้น!",
         rating: 4.8,
       },
       {
         id: 2,
-        name: "Kritsada Nantakorn",
+        name: "กฤษฎา นันทากร",
         review:
-          "The local coffee shops here are amazing. The beans are roasted fresh and the views are unbeatable.",
+          "ร้านกาแฟท้องถิ่นที่นี่ยอดเยี่ยมมาก เมล็ดกาแฟคั่วสดและวิวที่นี่ไม่มีใครเทียบได้",
         rating: 5.0,
       },
       {
         id: 3,
-        name: "Jirapat Suksri",
+        name: "จิรภัทร สุขศรี",
         review:
-          "Peaceful, authentic, and full of charm. Loved learning about the hill tribe culture.",
+          "เงียบสงบ อันเป็นเอกลักษณ์และเต็มไปด้วยเสน่ห์ ชอบเรียนรู้เกี่ยวกับวัฒนธรรมชนเผ่า",
         rating: 4.7,
       },
     ],
@@ -156,36 +155,36 @@ export const Cities = [
   {
     id: 5,
     cityId: 5,
-    name: "Mae Tia",
+    name: "แม่เตี้ย",
     image: "/images/city/city5.jpg",
     video: "/videos/maetia.mp4",
     count: 31,
     highlights: [
-      "Mae Tia Waterfall",
-      "Nature trekking Mae Tia",
-      "Wildlife watching Mae Tia",
-      "Mae Tia Village",
+      "น้ำตกแม่เตี้ย",
+      "การเดินป่าธรรมชาติแม่เตี้ย",
+      "การชมสัตว์ป่าแม่เตี้ย",
+      "หมู่บ้านแม่เตี้ย",
     ],
     reviews: [
       {
         id: 1,
-        name: "Rattana Phanich",
+        name: "รัตนา พานิช",
         review:
-          "The waterfall was powerful and refreshing. A great place for a nature escape.",
+          "น้ำตกที่นี่มีความแรงและสดชื่น เป็นสถานที่ที่ดีสำหรับการหลีกหนีจากธรรมชาติ",
         rating: 4.6,
       },
       {
         id: 2,
-        name: "Wichai Pattanakul",
+        name: "วิชัย พัฒนากุล",
         review:
-          "Trekking through Mae Tia is a hidden gem—lush forest and quiet paths all the way.",
+          "การเดินป่าผ่านแม่เตี้ยเป็นเพชรในที่ซ่อนเร้น—ป่าที่เขียวขจีและเส้นทางที่เงียบสงบตลอดทาง",
         rating: 4.9,
       },
       {
         id: 3,
-        name: "Supansa Dechachai",
+        name: "สุพรรณา เดชชัย",
         review:
-          "Saw wild birds and deer during the hike! Great for wildlife enthusiasts.",
+          "ได้เห็นนกป่ากับกวางระหว่างการเดินป่า! เหมาะสำหรับคนที่รักธรรมชาติ",
         rating: 4.8,
       },
     ],
@@ -193,35 +192,30 @@ export const Cities = [
   {
     id: 6,
     cityId: 6,
-    name: "Mae Tang",
+    name: "แม่แตง",
     image: "/images/city/city6.jpg",
     video: "/videos/maetang.mp4",
     count: 61,
-    highlights: [
-      "Suanson maetang",
-      "Huaykubkab Himm-Mok Homestay",
-      "Mae Ngat Dam",
-    ],
+    highlights: ["สวนสันต์แม่แตง", "โฮมสเตย์ห้วยขุขาบ", "เขื่อนแม่งัด"],
     reviews: [
       {
         id: 1,
-        name: "Noppawan Jaidee",
+        name: "นพวรรณ ใจดี",
         review:
-          "Suanson maetang here is thrilling and fun—perfect weekend adventure!",
+          "สวนสันต์แม่แตงที่นี่สนุกมากและท้าทาย—การผจญภัยสุดท้ายในวันหยุดสุดสัปดาห์!",
         rating: 5.0,
       },
       {
         id: 2,
-        name: "Phuwadol Songkla",
-        review:
-          "The bamboo forest is peaceful and photogenic. Feels like a movie set.",
+        name: "ภูวดล สงฆ์คลา",
+        review: "ป่ากกไม้ไผ่ที่นี่เงียบสงบและสวยงามเหมือนในฉากภาพยนตร์",
         rating: 4.7,
       },
       {
         id: 3,
-        name: "Kanyarat Sriwan",
+        name: "กัญญารัตน์ ศรีวัน",
         review:
-          "Mae Ngat Dam has stunning sunsets and kayaking was so relaxing.",
+          "เขื่อนแม่งัดมีพระอาทิตย์ตกที่สวยงามและการพายเรือคายักที่นี่ผ่อนคลายสุดๆ",
         rating: 4.9,
       },
     ],

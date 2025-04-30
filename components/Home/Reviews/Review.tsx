@@ -10,27 +10,26 @@ const Review = () => {
   return (
     <div className="pt-20 pb-20 flex items-center justify-center flex-col bg-gray-900">
       <div className="w-[80%] mx-auto grid items-center grid-cols-1 lg:grid-cols-2 gap-10">
-        {/* Text Content */}
+        {/* เนื้อหาข้อความ */}
         <div>
           <h1 className="text-2xl font-semibold text-white">
-            What our customers are saying us?
+            ลูกค้าของเรากำลังพูดถึงอะไรบ้าง?
           </h1>
           <p className="mt-6 text-white ">
-            The details here will tell the overall picture of the past tourism
-            of tourists who use the service.
+            รายละเอียดในส่วนนี้จะแสดงถึงภาพรวมของการท่องเที่ยวที่ผ่านมาของนักท่องเที่ยวที่ใช้บริการ
           </p>
-          {/* Ratings */}
+          {/* คะแนนรีวิว */}
           <div className="mt-6 flex items-center space-x-6">
             <div>
               <p className="text-2xl font-bold text-white">{averageRating}</p>
-              <p className="text-white mb-2">Overall Rating</p>
+              <p className="text-white mb-2">คะแนนรวมทั้งหมด</p>
               <div className="flex items-center">
                 <RatingComponent rating={averageRating} />
               </div>
             </div>
           </div>
         </div>
-        {/* Slider */}
+        {/* สไลเดอร์ */}
         <div className="overflow-hidden">
           <ReviewSlider />
         </div>

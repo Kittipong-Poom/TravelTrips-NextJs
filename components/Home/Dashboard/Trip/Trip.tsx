@@ -71,14 +71,14 @@ const Page = () => {
         </p>
         <div className="text-sm mt-4 font-normal ">
           <p className="text-gray-600 flex ">
-            Housing{" "}
+            ที่อยู่อาศัย{" "}
             <span className="ml-7 p-0.5 flex items-center  bg-green-100 w-[89px] rounded-full text-green-600">
               <CiCircleCheck className="text-green-900 mr-2 w-4 h-4" />
               {AnniversaryTrip[activeIndex].housing}
             </span>
           </p>
           <p className="text-gray-600 flex mt-1">
-            Transport{" "}
+            การจองรถหรือขนส่ง{" "}
             <span className="ml-4 p-0.5 flex items-center  bg-green-100 w-[89px] rounded-full text-green-600">
               <CiCircleCheck className="text-green-900 mr-2 w-4 h-4" />
               {AnniversaryTrip[activeIndex].transport}
@@ -86,7 +86,7 @@ const Page = () => {
           </p>
           {AnniversaryTrip[activeIndex].activities && (
             <p className="text-gray-600 flex mt-1">
-              Activities{" "}
+              กิจกกรม{" "}
               <span className="ml-[21px] p-0.5 flex items-center bg-purple-100 w-[120px] rounded-full text-purple-600">
                 <CiCirclePlus className="text-purple-900 mr-2 w-4 h-4" />
                 {AnniversaryTrip[activeIndex].activities}

@@ -9,7 +9,7 @@ type Props = {
 const WhyChooseCard = ({ image, title }: Props) => {
   return (
     <div className="text-center">
-      {/* Image */}
+      {/* รูปภาพ */}
       <Image
         src={image}
         width={70}
@@ -17,16 +17,16 @@ const WhyChooseCard = ({ image, title }: Props) => {
         alt={title}
         className="mx-auto"
       />
-      {/* Content */}
+      {/* เนื้อหา */}
       <h1 className="mt-6 text-center text-gray-900 font-medium text-lg">
         {title}
       </h1>
       <p className="mt-2 text-center text-xs font-medium text-gray-700">
-        {title === "Best Price Guarantee"
-          ? "Experience nature travel at the best price. Enjoy your trip without hidden costs."
-          : title === "Easy & Quick Booking"
-          ? "Book your stay or activities in national parks easily and quickly, no hassle."
-          : "We provide 24/7 customer support to ensure your nature getaway is smooth and safe."}
+        {title === "รับประกันราคาดีที่สุด"
+          ? "สัมผัสประสบการณ์การท่องเที่ยวธรรมชาติในราคาที่ดีที่สุด สนุกกับการเดินทางโดยไม่มีค่าใช้จ่ายแอบแฝง"
+          : title === "จองง่ายและรวดเร็ว"
+          ? "จองที่พักหรือกิจกรรมในอุทยานแห่งชาติได้ง่ายและรวดเร็ว โดยไม่มีความยุ่งยาก"
+          : "เรามีบริการลูกค้าตลอด 24 ชั่วโมง เพื่อให้การพักผ่อนในธรรมชาติของคุณราบรื่นและปลอดภัย"}
       </p>
     </div>
   );

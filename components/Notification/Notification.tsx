@@ -36,7 +36,7 @@ const Notification = ({ isLoggedIn, userName }: Props) => {
   return (
     <div className="relative">
       <div
-        className="p-3 rounded-xl mt-1 bg-white flex justify-center items-center mr-3 cursor-pointer"
+        className="p-3 rounded-xl mt-1.5 bg-white flex justify-center items-center mr-3 cursor-pointer"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <FaBell className="text-2xl text-black" />
@@ -62,14 +62,14 @@ const Notification = ({ isLoggedIn, userName }: Props) => {
               {notifications.map((notification, index) => (
                 <li
                   key={index}
-                  className="text-sm bg-gray-100 p-2 rounded-md shadow-sm flex items-center justify-between"
+                  className="text-sm bg-gray-100 text-black p-2 rounded-md shadow-sm flex items-center justify-between"
                 >
                   {isLoggedIn
                     ? `You are now logged in as ${userName}`
                     : `Notification #${notification}`}{" "}
                   <div
                     onClick={() => handleRemoveNotification(index)}
-                    className="text-red-500 text-xs hover:underline cursor-pointer"
+                    className="text-red-500  text-xs hover:underline cursor-pointer"
                   >
                     Remove
                   </div>

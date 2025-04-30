@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function LinearProgressCountUp() {
   const { value } = useCountUp({
     isCounting: true,
-    duration: 3,
+    duration: 2,
     easing: "linear",
     start: 0,
     end: 100,

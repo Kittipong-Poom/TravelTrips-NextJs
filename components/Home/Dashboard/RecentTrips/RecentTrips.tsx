@@ -22,9 +22,9 @@ const RecentTrips = () => {
   };
   return (
     <div>
-      <h2 className="text-lg font-semibold">Recent Trips</h2>
+      <h2 className="text-lg font-semibold">ทริปล่าสุด</h2>
       <div key={latestTrip.id}>
-        <div className="grid place-items-center md:place-items-start">
+        <div className="place-items-center md:place-items-start">
           <div className="mt-3 h-40 rounded-xl relative w-full max-w-lg overflow-hidden">
             <Image
               src={latestTrip.image}

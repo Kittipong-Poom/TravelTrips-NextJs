@@ -5,12 +5,12 @@ import { navLinks } from "@/constant/constant";
 import Link from "next/link";
 import { toast } from "sonner";
 import React, { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa";
 import { GiBurningForest } from "react-icons/gi";
 import { AiFillCheckCircle as CheckCircle } from "react-icons/ai";
 import LoginButton from "@/components/UserLogin/LoginLogoutButton";
 import UserGreetText from "@/components/UserLogin/UserGreetText";
 import { User } from "@supabase/auth-js";
-import BaseIcon from "@/components/BaseIcons/BaseIcon";
 import { Button } from "@/components/ui/button";
 import Notification from "@/components/Notification/Notification";
 type Props = {
@@ -64,7 +64,7 @@ const Nav = ({ openNav, user, setUser }: Props) => {
         navBg
           ? "bg-gray-900 shadow-md text-white"
           : "lg:bg-transparent lg:text-black bg-gray-900 text-white"
-      } transition-all duration-200 h-[12vh] z-[1000] fixed w-full`}
+      } transition-all duration-200 h-[12vh] z-[1000] fixed w-full `}
     >
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
         {/* Logo */}
@@ -80,14 +80,18 @@ const Nav = ({ openNav, user, setUser }: Props) => {
             </div>
             <h1
               className={`text-xl md:text-2xl uppercase font-bold ${
-                isHome ? "text-white" : navBg ? "text-white" : "text-black"
+                isHome
+                  ? "text-white"
+                  : navBg
+                  ? "text-white"
+                  : "mix-blend-difference"
               }`}
             >
               NatureTrip
             </h1>
           </Link>
         </div>
-        <div className="hidden lg:flex items-center space-x-5">
+        <div className="hidden lg:flex items-center space-x-5 ">
           {navLinks
             .filter((link) => {
               if (link.label === "Dashboard" && !user) return false;
@@ -151,15 +155,15 @@ const Nav = ({ openNav, user, setUser }: Props) => {
                 )}
               </div>
             ) : (
-              <div className="mt-3 lg:mt-2">
+              <div className="mt-2 lg:mt-1.5">
                 <LoginButton setUser={setUser} />
               </div>
             )}
             <Button
-              className="group flex lg:hidden ml-3 w-12 h-12  text-white items-center justify-center relative z-10 [transition:all_0.5s_ease] rounded-[0.375rem] p-[5px] cursor-pointer  border-[#999] outline-none focus-visible:outline-0"
+              className="group flex lg:hidden ml-3 w-12 h-12 bg-white rounded-xl"
               onClick={openNav}
             >
-              <BaseIcon icon="Hamburger" className="w-7 h-7 " />
+              <FaBars className="w-7 h-7  text-black" />
             </Button>
           </div>
         </div>

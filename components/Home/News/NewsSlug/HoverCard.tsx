@@ -29,7 +29,7 @@ const HoverCard = ({ place }: { place: Place }) => {
         }}
       >
         <h2 className="text-lg font-bold text-green-900">{place.name}</h2>
-        <p className="text-gray-600 text-sm">2 hours ago</p>
+        <p className="text-gray-600 text-sm">2 ชั่วโมงที่แล้ว</p>
         <p
           className={`text-gray-500 mt-2 transition-opacity duration-300 ${
             hovered ? "opacity-100" : "opacity-0"

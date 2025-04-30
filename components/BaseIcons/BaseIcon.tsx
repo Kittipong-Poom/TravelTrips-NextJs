@@ -4,7 +4,6 @@ const iconMap = {
   "Arrow-left": lazy(() => import("./icons/Arrow-left")),
   Google: lazy(() => import("./icons/Google")),
   Github: lazy(() => import("./icons/Github")),
-  Hamburger: lazy(() => import("./icons/Hamburger")),
 };
 
 type IconName = keyof typeof iconMap;

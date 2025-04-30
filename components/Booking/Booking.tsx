@@ -96,8 +96,8 @@ const Checkout = () => {
     router.push("/successPayment");
   };
 
-  const DateLongEN = (date: Date) => {
-    dayjs.locale("en");
+  const DateLongTH = (date: Date) => {
+    dayjs.locale("th");
     return dayjs(date).format("DD MMMM YYYY");
   };
   if (!booking) {
@@ -118,14 +118,16 @@ const Checkout = () => {
         {activeStep === 0 ? (
           <div className="md:col-span-2 bg-white p-6 shadow-lg rounded-lg">
             <div className="flex justify-between">
-              <h2 className="text-2xl font-semibold mb-4">Secure Checkout</h2>
+              <h2 className="text-2xl font-semibold mb-4">ชำระเงิน ที่พัก</h2>
               <span>{formatTime(timeLeft)}</span>
             </div>
             <p className="text-gray-600 mb-6">
-              Checkout securely - it takes only a few minutes
+              ชำระเงินอย่างปลอดภัย - ใช้เวลาเพียงไม่กี่นาที
             </p>
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Contact Detail</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                รายละเอียดการติดต่อ
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="mb-4">
                   {errors.email && (
@@ -135,7 +137,7 @@ const Checkout = () => {
                   )}
                   <input
                     type="email"
-                    placeholder="Input email"
+                    placeholder="ระบุอีเมล์"
                     className="border p-2 w-full rounded"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -149,7 +151,7 @@ const Checkout = () => {
                   )}
                   <input
                     type="text"
-                    placeholder="Input phone number"
+                    placeholder="ระบุเบอร์โทรศัพท์"
                     className="border p-2 w-full rounded"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
@@ -166,14 +168,14 @@ const Checkout = () => {
                     onChange={() => setIsChecked(!isChecked)}
                   />
                   <span className="ml-3">
-                    Receive text message updates about your booking.
+                    รับข้อความอัปเดตเกี่ยวกับการจองของคุณ
                   </span>
                 </label>
               </div>
             </div>
 
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Traveler Detail</h3>
+              <h3 className="text-lg font-semibold mb-2"></h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="mb-4">
                   {errors.firstName && (
@@ -183,7 +185,7 @@ const Checkout = () => {
                   )}
                   <input
                     type="text"
-                    placeholder="First name"
+                    placeholder="ชื่อ"
                     className="border p-2 w-full rounded"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -197,7 +199,7 @@ const Checkout = () => {
                   )}
                   <input
                     type="text"
-                    placeholder="Last name"
+                    placeholder="นามสกุล"
                     className="border p-2 w-full rounded"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -212,7 +214,7 @@ const Checkout = () => {
                 )}
                 <input
                   type="text"
-                  placeholder="Input your address"
+                  placeholder="ระบุที่อยู่"
                   className="border p-2 w-full rounded"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
@@ -220,17 +222,19 @@ const Checkout = () => {
               </div>
             </div>
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Promo Code</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                รหัสโปรโมชั่น(เว้นได้)
+              </h3>
               <div className="flex items-center gap-2">
                 <input
                   type="text"
-                  placeholder="Input your code"
+                  placeholder="ระบุรหัสโปรโมชั่น"
                   className="border p-2 w-full rounded"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
                 />
                 <button className="text-blue-500 p1 hover:bg-blue-200 transition-all duration-200 rounded-xl">
-                  Find Promo Code?
+                  หา รหัสโปรโมชั่น?
                 </button>
               </div>
             </div>
@@ -255,13 +259,15 @@ const Checkout = () => {
               subtotal={subtotal}
               grandTotal={grandTotal}
               price={price}
-              DateLongEN={DateLongEN}
+              DateLongTH={DateLongTH}
               email={email}
             />
           </div>
         )}
         <div className="bg-white p-6 shadow-lg rounded-lg">
-          <h3 className="text-lg font-semibold mb-4">Review Order Details</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            ตรวจสอบรายละเอียดการสั่งซื้อ
+          </h3>
           <div className="mb-4">
             <Image
               src={booking.image}
@@ -275,8 +281,8 @@ const Checkout = () => {
               Rating : <span className="font-semibold">{booking.rating}</span>
             </p>
             <p className="text-sm text-gray-600">
-              {booking.checkIn ? DateLongEN(booking.checkIn) : "N/A"} -{" "}
-              {booking.checkOut ? DateLongEN(booking.checkOut) : "N/A"}
+              {booking.checkIn ? DateLongTH(booking.checkIn) : "N/A"} -{" "}
+              {booking.checkOut ? DateLongTH(booking.checkOut) : "N/A"}
             </p>
           </div>
           <div className="border-t pt-4">
@@ -284,10 +290,10 @@ const Checkout = () => {
               <span>VAT (7%)</span> <span>฿ {vat.toFixed(2)}</span>
             </p>
             <p className="flex justify-between text-gray-600">
-              <span>Subtotal</span> <span>฿ {subtotal.toFixed(2)}</span>
+              <span>ผลรวมย่อย</span> <span>฿ {subtotal.toFixed(2)}</span>
             </p>
             <p className="flex justify-between font-semibold text-lg mt-2">
-              <span>Grand Total</span> <span>฿ {grandTotal.toFixed(2)}</span>
+              <span>รวมทั้งหมด</span> <span>฿ {grandTotal.toFixed(2)}</span>
             </p>
           </div>
         </div>

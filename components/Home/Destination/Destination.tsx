@@ -5,14 +5,14 @@ import DestinationSlider from "./DestinationSlider";
 const Destination = () => {
   return (
     <div className="pt-20 pb-20">
-      {/* Section Heading */}
+      {/* ส่วนหัวของหมวดหมู่ */}
       <SectionHeading
-        heading="Exploring Popular Destinations"
-        description="Relax and unwind by discovering popular destinations that offer tranquil environments and stunning views."
+        heading="สำรวจจุดหมายปลายทางยอดนิยม"
+        description="ผ่อนคลายและเพลิดเพลินไปกับจุดหมายปลายทางยอดนิยมที่มอบความสงบและวิวทิวทัศน์อันงดงาม"
       />
-      {/* Section Content */}
+      {/* เนื้อหาในส่วนนี้ */}
       <div className="mt w-[80%] mx-auto">
-        {/*Slider */}
+        {/* สไลเดอร์ */}
         <DestinationSlider />
       </div>
     </div>

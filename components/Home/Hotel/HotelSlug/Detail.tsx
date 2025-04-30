@@ -108,7 +108,7 @@ const HotelDetailPage = () => {
 
             <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-center  text-gray-800">
-                Facilities
+                สิ่งอำนวยความสะดวก
               </h3>
               <ul className="mt-2 text-gray-600 list-disc pl-4 space-y-2">
                 {(hotel.availableFacilities ?? []).map((facility, index) => {
@@ -135,7 +135,7 @@ const HotelDetailPage = () => {
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 px-8 pb-8">
             <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-center text-gray-800">
-                Nearby Attractions
+                สถานที่ท่องเที่ยวใกล้เคียง
               </h3>
               <ul className="mt-2 text-gray-600 list-disc pl-4 space-y-2">
                 {(hotel.nearbyPlaces ?? []).map((place, index) => (
@@ -150,7 +150,7 @@ const HotelDetailPage = () => {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-center text-gray-800">
-                Cafés & Restaurants
+                คาเฟ่ & ร้านอาหาร
               </h3>
               <ul className="mt-2 text-gray-600 list-disc pl-4 space-y-2">
                 {(hotel.cafesAndRestaurants ?? []).map((cafe, index) => (
