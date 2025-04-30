@@ -7,13 +7,14 @@ import BaseIcon from "@/components/BaseIcons/BaseIcon";
 import RatingComponent from "../Rating/RatingComponent";
 import NotFound from "@/components/404NotFound/NotFound";
 import { Skeleton } from "@/components/ui/skeleton";
+
 const CityDetail = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const params = useParams();
   const { cityId } = params;
   const city = Cities.find((c) => c.cityId === parseInt(cityId as string, 10));
-
   if (!city) return <NotFound />;
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
