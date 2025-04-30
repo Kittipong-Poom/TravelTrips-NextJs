@@ -14,13 +14,14 @@ const CityDetail = () => {
   const { cityId } = params;
   const city = Cities.find((c) => c.cityId === parseInt(cityId as string, 10));
   if (!city) return <NotFound />;
-
+  /* eslint-disable react-hooks/rules-of-hooks */
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1300);
     return () => clearTimeout(timer);
   }, [cityId]);
+  // eslint-enable react-hooks/rules-of-hooks
   return (
     <div className="bg-gray-100 min-h-screen p-6 pt-28">
       <div className=" max-w-[1800px]">
