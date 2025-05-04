@@ -22,6 +22,7 @@ const responsive = {
     slidesToSlide: 1,
   },
 };
+
 const DestinationSlider = () => {
   return (
     <Carousel
@@ -34,18 +35,19 @@ const DestinationSlider = () => {
       {destinationData.map((data) => {
         return (
           <div key={data.id} className="m-3">
-            <div className="relative h-[400px] overflow-hidden rounded-lg group">
+            <div className="relative h-[400px] overflow-hidden rounded-lg group shadow-lg">
               {/* OverLay */}
-              <div className="absolute inset-0 bg-black opacity-25 rounded-lg"></div>
+              <div className="absolute inset-0 bg-black opacity-25 group-hover:opacity-40 transition duration-300 rounded-lg"></div>
               {/* Image */}
               <Image
-                className="h-full w-full object-cover rounded-lg overflow-hidden group-hover:scale-110 transition-all duration-300"
+                className="h-full w-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
                 src={data.image}
                 alt={data.location}
                 width={500}
                 height={500}
               />
             </div>
+
             {/* TextContent */}
             <h1 className="text-lg font-semibold mt-4">{data.location}</h1>
             <p className="text-sm text-gray-600">

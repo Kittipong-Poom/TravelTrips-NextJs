@@ -49,7 +49,7 @@ const SearchResults = () => {
   }, [q, province, nationalPark]);
 
   return (
-    <div className="min-h-screen pt-32 px-6 bg-gradient-to-r from-blue-50 to-gray-50">
+    <div className="min-h-screen pt-48 px-6 ">
       {results.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {results.map((p) => (
